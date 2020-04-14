@@ -1,0 +1,63 @@
+
+    
+    <div class="input-group-btn">
+        <button type="button" class="btn" routerLink="/default/liste-comptes">Liste<i class="fas fa-fw fa-table" ></i></button>
+      </div>
+      
+<div class="container">
+    
+
+    <div class="login-triangle"></div>
+    <i class="fa fa-money" ></i>
+
+    <h2 class="login-header">Creation Compte</h2>
+    <form  [formGroup]="CompteForm" class="login-container" >
+        <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading> -->
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4" >Ninea</label>
+            <input type="text" class="form-control"  formControlName="ninea" name="ninea" placeholder="Ninea">
+           
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputText4">Registre</label>
+            <input type="text" class="form-control" formControlName="register" name="register" placeholder="Registre"  [value]="register">
+        </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+            <label for="inputEmail4">Username</label>
+            <input type="text" class="form-control" [value]="username" formControlName="username" name="username" placeholder="Usename">
+            </div>
+            <div class="form-group col-md-6">
+            <label for="inputPassword4">Password</label>
+            <input type="password" class="form-control" [value]="password" formControlName="password" name="password" placeholder="****">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Nom Complet</label>
+                <input type="text" class="form-control" [value]="nomComplet" formControlName="nomComplet" name="nomComplet" placeholder="Nom Complet">
+            </div>
+        <div class="form-group col-md-6">
+            <label for="inputCity">Solde</label>
+            <input type="number" formControlName="solde" class="form-control" id="inputCity"  name="solde" [value]="500000" readonly  style="color: white; background-color: #28d;">
+        </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Adresse</label>
+                <input type="text" class="form-control" [value]="adresse" formControlName="adresse" name="adresse"  placeholder="Adresse">
+            </div>
+        <div class="form-group col-md-6">
+            <label for="inputCity">Telephone</label>
+            <input type="text" formControlName="tel" [value]="tel" class="form-control" id="inputCity"  name="tel"  placeholder="+221....">
+        </div>
+        </div>
+        <div class="form-row">
+             <div class="form-group col-md-6">
+            <input class="btn" type="submit" (click)="OnSub()" value="Enregisterer">
+        </div>
+        </div>
+    </form>
+</div>

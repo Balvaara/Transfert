@@ -1,0 +1,29 @@
+<div class="input-group-btn">
+    <button type="button" class="btn" routerLink="/affectation">Create<i class="fa fa-plus" ></i></button>
+  </div>
+  <br>
+  <br>
+  <table class="table">
+      <thead class="thead">
+        <tr>
+          <th scope="col">N</th>
+          <th scope="col">N°Compte</th>
+          <th scope="col">Solde</th>
+          <th scope="col">Utilisateur Affecte</th>
+          <th scope="col">Date Du Debu</th>
+          <th scope="col">Date Du La Fin</th>
+
+        </tr>
+      </thead>
+      <tbody>
+       <tr *ngFor="let affect of allaffect">
+          <td>{{affect.id}}</td>
+          <td>{{affect.comptes.numero}}</td>
+          <td>{{affect.comptes.solde}}</td>
+          <td>{{affect.users.nomComplet}}</td>
+          <td>{{affect.dateAfect}}</td>
+          <td>{{affect.dateFin}}</td>
+
+        </tr>
+      </tbody>
+    </table>

@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag —-------->
+    <title>VHEG Overses Educational Fair Registration</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+</head>
+<body>
+        <p class="input-group-btn">
+        <button type="button" class="btn" routerLink="/liste-affectation">Listes<i class="fas fa-fw fa-table"></i></button>
+      </p>
+<div class="container">
+    
+    
+    <div class="login-triangle"></div>
+    <i class="fa fa-money" aria-hidden="true"></i>
+
+    <h2 class="login-header">Affecttion  Compte
+    </h2>
+    
+    <div class="form-group col-md-6">
+        <label for="inputPassword4">Solde Du Compte: </label>
+        <input type="text"  [value]="solde" formControlName="solde" name="solde" readonly  class="mysolde">
+    </div>
+    <form  [formGroup]="AffecttionForm" class="login-container" >
+        <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading> -->
+      
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4" >Date Debut</label>
+            <input type="datetime" class="form-control"  formControlName="dateAfect" name="dateAfect" placeholder="yyyy-mm-dd h:m:s">
+           
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputDate4">Date Fin</label>
+            <input type="datetime" class="form-control" formControlName="dateFin" name="dateFin" placeholder="yyyy-mm-dd h:m:s">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputState">Compte</label>
+            <select id="inputState" formControlName="numero" class="form-control" name="numero">
+              <option value="">Choix.....</option>
+            <option *ngFor=" let numero of numeros " value="{{numero.id}}">
+                {{numero.numero}}
+            </option>
+          
+            </select>
+             </div>
+             <div class="form-group col-md-6">
+                <label for="inputState">Utilisateur</label>
+                <select id="inputState" formControlName="user" class="form-control">
+                  <option value="">Choix.....</option>
+                <option *ngFor=" let user of users " value="{{user.id}}">
+                    {{user.nomComplet}}
+                </option>
+              
+                </select>
+             </div>
+        </div>
+       
+        <div class="form-row">
+             <div class="form-group col-md-6">
+            <input class="btn" type="submit" (click)="OnSub()" value="Enregisterer">
+             </div>
+        
+        </div>
+        
+    </form>
+</div>
+</body>
+</html>

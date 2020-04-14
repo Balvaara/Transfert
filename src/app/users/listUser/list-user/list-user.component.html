@@ -1,0 +1,34 @@
+
+<table class="table">
+  <thead class="thead">
+    <tr>
+      <th>Id</th>
+      <th>Username</th>
+      <th>Nom</th>
+      <th>Profil</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr *ngFor="let user of alluser">
+      <td scope="row">{{user.id}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.nomComplet}}</td>
+      <td>{{user.profil.libelle}}</td>
+
+
+
+      <td>
+        <div *ngIf="user.isActive; else elseBlock">
+          <button  class="btn btn-success" (click)="Etat(user.id)" >Actif</button>
+
+          </div>
+      <ng-template #elseBlock>
+        <button class="btn btn-danger" (click)="Etat(user.id)">Inactif</button>
+      </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</table>
+  

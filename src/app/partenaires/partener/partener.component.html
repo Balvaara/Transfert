@@ -1,0 +1,40 @@
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Non Complet</th>
+      <th>Username</th>
+      <th>Ninea</th>
+      <th>Registre</th>
+      <th>Adresse</th>
+      <th>Telephone</th>
+      <th>Status</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr *ngFor="let part of allpart">
+      <td scope="row">{{part.id}}</td>
+      <td>{{part.users[0].nomComplet}}</td>
+      <td>{{part.users[0].username}}</td>
+      <td>{{part.ninea}}</td>
+      <td>{{part.register}}</td>
+      <td>{{part.adresse}}</td>
+      <td>{{part.tel}}</td>
+      <td>
+        <div *ngIf="part.users[0].isActive; else elseBlock">
+          <button  class="btn btn-success" (click)="Etat(part.id)" >Actif</button>
+
+          </div>
+      <ng-template #elseBlock>
+        <button class="btn btn-danger" (click)="Etat(part.id)">Inactif</button>
+      </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>

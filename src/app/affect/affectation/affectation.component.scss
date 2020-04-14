@@ -1,0 +1,42 @@
+.container{
+    margin-top:7%;
+  }
+    .login-header {
+      background: #28d;
+      padding: 10px;
+      font-size: 1.4em;
+      font-weight: normal;
+      text-align: center;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .container input[type="submit"] {
+      margin-top: 6%;
+     
+      background: #28d;
+  
+      border-color: transparent;
+      color: #fff;
+      cursor: pointer;
+      
+    }
+  
+    
+    .container input[type="submit"]:hover {
+      background: #17c;
+    }
+    .btn{
+      background-color: #28d;
+     
+      color:white;
+      }
+     .mysolde{
+       width: 60%;
+       color: #28d;
+       border-color: transparent;
+     } 
+     fieldset{
+       border-color: #28d;
+       width: 80%;
+     } 
+    

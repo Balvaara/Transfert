@@ -1,0 +1,36 @@
+
+    <div class="input-group-btn">
+        <button type="button" class="btn" routerLink="/default/liste-depot">Listes<i class="fas fa-fw fa-table"></i></button>
+      </div>
+<div class="container">
+    
+
+    <div class="login-triangle"></div>
+    <i class="fa fa-money" aria-hidden="false"></i>
+
+    <h2 class="login-header">Fiare Depot</h2>
+    <form  [formGroup]="DepotForm" class="login-container" >
+        <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading> -->
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4" >Numero Compte</label>
+            <input type="text" class="form-control"  formControlName="numero" name="numero" placeholder="Numero du comptes svp">
+           
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Solde Du Compte</label>
+            <input type="text" class="form-control" [value]="solde" formControlName="solde" name="solde" readonly placeholder="0$.00" style="color: white; background-color: #28d;">
+        </div>
+        </div>
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputCity">Montant Du Depot</label>
+            <input type="number" formControlName="montant" class="form-control" id="inputCity" [value]="montant"  name="montant" placeholder="CFA">
+
+        </div>
+             <div class="form-group col-md-6">
+            <input class="btn" type="submit" (click)="OnSub()" value="Enregisterer">
+            </div>
+        </div>
+    </form>
+</div>

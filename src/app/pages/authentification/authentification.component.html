@@ -1,0 +1,20 @@
+<app-forr-connexion></app-forr-connexion>
+<br>
+<button class="btn" (click)='OnRoles()'>
+        Affiche Roles <span class="badge badge-primary"></span>
+</button>
+<table class="table">
+        <thead>
+                <tr>
+                        <th>Id</th>
+                        <th>Libelle</th>
+                      
+                </tr>
+        </thead>
+        <tbody>
+                <tr *ngFor="let role of roles">
+                        <td scope="row">{{role.id}}</td>
+                        <td>{{role.libelle}}</td>
+                     
+        </tbody>
+</table>

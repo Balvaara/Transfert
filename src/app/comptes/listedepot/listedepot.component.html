@@ -1,0 +1,25 @@
+<div class="input-group-btn">
+    <button type="button" class="btn" routerLink="/default/comptes">Create<i class="fa fa-plus" ></i></button>
+  </div>
+  <br>
+  <br>
+  <table class="table">
+      <thead class="thead">
+        <tr>
+          <th scope="col">N</th>
+          <th scope="col">N°Compte</th>
+          <th scope="col">Montant</th>
+          <th scope="col">Effectuer Par</th>
+          <th scope="col">Date Du Depot</th>
+        </tr>
+      </thead>
+      <tbody>
+       <tr *ngFor="let depot of alldepot">
+          <td>{{depot.id}}</td>
+          <td>{{depot.comptes.numero}}</td>
+          <td>{{depot.montant}}</td>
+          <td>{{depot.user.nomComplet}}</td>
+          <td>{{depot.datedepot | date:'yyyy-MM-dd H:mm:ss'}}</td>
+        </tr>
+      </tbody>
+    </table>
