@@ -20,4 +20,6 @@ export class PartenerService {
   getEtat(id:number){
     return this.HttpClient.get(`${environment.myApi}/api/users/partenaire/${id}`);
   }
+
+  
 }

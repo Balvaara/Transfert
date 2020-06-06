@@ -23,6 +23,7 @@ export class CrerCompteComponent implements OnInit {
   register ='';
   solde;
   tel='';
+  description=''
   adresse='';
 
   constructor(
@@ -42,6 +43,7 @@ export class CrerCompteComponent implements OnInit {
            solde: new FormControl(''),
            tel: new FormControl(''),
            adresse: new FormControl(''),
+           description: new FormControl(''),
            
          })
         
@@ -65,6 +67,7 @@ export class CrerCompteComponent implements OnInit {
     const password =this.CompteForm.value.password;
     const tel =this.CompteForm.value.tel;
     const adresse =this.CompteForm.value.adresse;
+    const description =this.CompteForm.value.description;
 
  
 
@@ -78,6 +81,8 @@ export class CrerCompteComponent implements OnInit {
       password:password,
       tel:tel,
       adresse:adresse,
+      description:description,
+
       solde:500000,
     
      
@@ -135,6 +140,8 @@ getPatnerByNinea(ninea) {
       this.register = partner.register;
       this.tel = partner.tel;
       this.adresse = partner.adresse;
+      this.description = partner.description;
+
 
 
 
@@ -144,6 +151,8 @@ getPatnerByNinea(ninea) {
       this.CompteForm.get('register').disable();
       this.CompteForm.get('tel').disable();
       this.CompteForm.get('adresse').disable();
+      this.CompteForm.get('description').disable();
+
 
       this.cerv = 1;
 
@@ -155,6 +164,8 @@ getPatnerByNinea(ninea) {
       this.ninea='';
       this.tel='';
       this.adresse='';
+      this.description='';
+
 
       this.CompteForm.get('username').enable();
       this.CompteForm.get('password').enable();
@@ -162,6 +173,8 @@ getPatnerByNinea(ninea) {
       this.CompteForm.get('register').enable();
       this.CompteForm.get('tel').enable();
       this.CompteForm.get('adresse').enable();
+      this.CompteForm.get('description').enable();
+
 
 
 

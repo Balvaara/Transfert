@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OperationService } from 'src/app/serices/operation.service';
 
 @Component({
   selector: 'app-listeoperation',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listeoperation.component.scss']
 })
 export class ListeoperationComponent implements OnInit {
-
-  constructor() { }
+  allTransaction;
+  constructor(private operation:OperationService) { }
 
   ngOnInit() {
+    this.operation.getAll().subscribe(
+      data=>{
+        this.allTransaction=data["hydra:member"]
+        console.log(data)
+      }
+    )
   }
 
 }

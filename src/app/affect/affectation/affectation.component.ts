@@ -23,7 +23,7 @@ solde;
     this.Affectation.listeComptes().subscribe(
       data=>{
         this.numeros=data;
-        console.log(data);
+        // console.log(data);
       }
     ),
     this.Affectation.listeUsers().subscribe(
@@ -69,7 +69,7 @@ solde;
   )
   }
   getPatnerByNinea(val) {
-    this.compteservice.RechNumero(val).subscribe
+    this.compteservice.RechNumero1(val).subscribe
     (data => {
       if (data["hydra:member"][0]) {
         let comptes = data["hydra:member"][0] ;
@@ -77,7 +77,7 @@ solde;
       // this.iri = comptes['@id'];
     this.numero=comptes['id'];
         // console.log(data["hydra:member"][0]);
-        this.solde = comptes.solde;
+        this.solde = comptes.solde +'CFA';
 
         // this.DepotForm.get('solde').disable();
         // this.cerv = 1;

@@ -36,6 +36,11 @@ export class CompteService {
     return this.HttpClient.get<any>(`${environment.myApi}/api/comptes?numero=${numero}`);
   }
 
+  RechNumero1(numero){
+  
+    return this.HttpClient.get<any>(`${environment.myApi}/api/comptes?id=${numero}`);
+  }
+
   faireDepot(numero:any){
   
     return this.HttpClient.post(`${environment.myApi}/api/compte/fairedepot`,numero);

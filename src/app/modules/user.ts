@@ -1,3 +1,5 @@
+import { Role } from './role';
+
 export interface User {
     username?:string;
     password?:string;
@@ -5,4 +7,6 @@ export interface User {
     nomComplet ?:string;
     isActive ?:boolean;
     profil?:any;
+    photo?:any;
+    roles?:any;
 }

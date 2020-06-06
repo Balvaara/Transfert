@@ -1,40 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag —-------->
-    <title>VHEG Overses Educational Fair Registration</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-  
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-</head>
-<body>
-    
-    <div class="input-group-btn">
         <button type="button" class="btn" routerLink="/default/liste-comptes">Liste<i class="fas fa-fw fa-table" ></i></button>
-      </div>
       
 <div class="container">
     
 
     <div class="login-triangle"></div>
-    <i class="fa fa-money" ></i>
+    
 
-    <h2 class="login-header">Transaction</h2>
+    <h2 class="login-header"><i class="fas fa-hand-holding-usd"></i>Transaction<i class="fas fa-hand-holding-usd"></i></h2>
     <form  [formGroup]="TransactionForm" class="login-container" >
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -58,55 +31,56 @@
             <input type="text" class="form-control" formControlName="code" name="code" placeholder="Code De Transaction">
            
         </div>
-    </div>
-    <div class="form-row">
+  
         <div class="form-group col-md-6">
             <label for="inputEmail4" >Nom Du Deposant</label>
             <input type="text" class="form-control" [value]="nomdep" formControlName="nomdep" name="nomdep" placeholder="Nom Du Deposant">
            
         </div>
-       
+    </div>
+    <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputText4">Telephone Du Deposant</label>
             <input type="text" class="form-control" [value]="teldep" formControlName="teldep" name="teldep" placeholder="Telephone Du Deposant"  [value]="teldep">
         </div>
-        </div>
-        <div class="form-row">
+       
+       
             <div class="form-group col-md-6">
             <label for="inputEmail4">Nom Du Recepteur</label>
             <input type="text" class="form-control" [value]="nomRecepteur" formControlName="nomRecepteur" name="nomRecepteur" placeholder="Nom Du Recepteur">
             </div>
+        </div>
+        <div class="form-row">
             <div class="form-group col-md-6">
             <label for="inputPassword4">Telephone Du Recepteur</label>
             <input type="text" class="form-control" [value]="telrep" formControlName="telrep" name="telrep" placeholder="Telephone Du Recepteur">
             </div>
-        </div>
-        <div class="form-row">
+    
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Montant</label>
                 <input type="number" class="form-control" [value]="montant" formControlName="montant" name="montant" placeholder="Montant">
             </div>
+        </div>
+        <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputCity">Tarifs</label>
             <input type="number" formControlName="frais"  [value]="frais" class="form-control" id="inputCity"  name="frais"  readonly  style="color: white; background-color: #28d;">
         </div>
-        </div>
-        <div class="form-row">
+     
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Piece Du Recepteur</label>
                 <input type="text" class="form-control" [value]="piece" formControlName="piece" name="piece"  placeholder="CNI ou PASSPORT">
             </div>
+        </div>
+        <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputCity">Montant Total</label>
             <input type="text" formControlName="montantt" [value]="montantt" class="form-control" id="inputCity"  name="montantt"  placeholder="Montant Total">
         </div>
-        </div>
-        <div class="form-row">
+        
              <div class="form-group col-md-6">
             <input class="btn" type="submit" (click)="OnSub()" value="Enregisterer">
         </div>
         </div>
     </form>
 </div>
-</body>
-</html>

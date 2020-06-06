@@ -83,10 +83,11 @@ export class FaireDepotComponent implements OnInit {
         // console.log(data["hydra:member"][0]);
         this.solde = comptes.solde;
 
+     
         
          this.DepotForm.get('solde').disable();
      
-         this.DepotForm.get('montant').enable();
+        //  this.DepotForm.get('montant').enable();
 
         //  this.cerv = 1;
 
@@ -94,7 +95,7 @@ export class FaireDepotComponent implements OnInit {
         this.montant='00';
         this.solde='0.00';
         this.DepotForm.get('solde');
-        this.DepotForm.get('montant').disable();
+        // this.DepotForm.get('montant').disable();
 
      
       
@@ -104,7 +105,7 @@ export class FaireDepotComponent implements OnInit {
   
   error => {
     console.log(error);
-    console.log();
+    
   };
 
 }

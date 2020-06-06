@@ -18,19 +18,14 @@ import { ListeAffectComponent } from './affect/liste-affect/liste-affect.compone
 import { MyStaticComponent } from './static/my-static/my-static.component';
 import { OperationComponent } from './transaction/operation/operation.component';
 import { ListeoperationComponent } from './transaction/listeoperation/listeoperation.component';
+import { DefaultpartComponent } from './defaultpart/defaultpart.component';
+import { AuthentificationGuard } from './authentification.guard';
 
 
 const routes: Routes = [
   { path: '', component:ForrConnexionComponent},
-  { path: 'affectation', component:AffectationComponent},
-  { path: 'liste-affectation', component:ListeAffectComponent},
-  { path: 'transaction', component:OperationComponent},
-  { path: 'lister-operation', component:ListeoperationComponent},
-
-
-
-
-  { path: 'default', component:DefaultComponent,
+  
+  { path: 'default', component:DefaultComponent,canActivate:[AuthentificationGuard],
   children:
   [
         { path: 'liste-users', component:ListUserComponent},
@@ -41,9 +36,19 @@ const routes: Routes = [
         { path: 'faire-depot', component:FaireDepotComponent},
         { path: 'liste-depot', component:ListedepotComponent},
         { path: 'static', component:MyStaticComponent},
+  ]
+},
+{ path: 'defaultpart', component:DefaultpartComponent,canActivate:[AuthentificationGuard],
+  children:
+  [
+    { path: 'users', component:AjoutUserComponent},
+    { path: 'liste-users', component:ListUserComponent},
+    { path: 'affectation', component:AffectationComponent},
+    { path: 'liste-affectation', component:ListeAffectComponent},
+    { path: 'transaction', component:OperationComponent},
+    { path: 'lister-operation', component:ListeoperationComponent},
+    { path: 'static', component:MyStaticComponent},
 
-
-       
 
   ]
 }

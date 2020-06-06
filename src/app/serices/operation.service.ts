@@ -30,4 +30,8 @@ export class OperationService {
   
     return this.HttpClient.get<any>(`${environment.myApi}/api/transactions?code=${code}`);
   }
+  getAll(){
+  
+    return this.HttpClient.get<any>(`${environment.myApi}/api/transactions`);
+  }
 }

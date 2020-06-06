@@ -20,12 +20,16 @@
       cursor: pointer;
       
     }
+
+    
   
     
     .container input[type="submit"]:hover {
       background: #17c;
     }
     .btn{
+      float: right;
+      margin-top: -3%;
       background-color: #28d;
      
       color:white;

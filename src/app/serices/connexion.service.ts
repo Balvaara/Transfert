@@ -37,5 +37,9 @@ export class ConnexionService {
   getRolePart(){
     return this.HttpClient.get(`${environment.myApi}/api/listerRolesPart`);
   }
+  logout(){
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+  }
   
 }

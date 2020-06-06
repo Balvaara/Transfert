@@ -6,10 +6,10 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthentificationComponent } from './pages/authentification/authentification.component';
 import { ForrConnexionComponent } from './components/forr-connexion/forr-connexion.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { JwtInterceptor } from './helpers/jwt-interceptor.service';
 
-import { APP_BASE_HREF, NgIfContext } from '@angular/common';
+import { APP_BASE_HREF, NgIfContext, NgLocaleLocalization, NgClass } from '@angular/common';
 
 import { AjoutUserComponent } from './users/ajout_users/ajout-user.component';
 import { ListUserComponent } from './users/listUser/list-user/list-user.component';
@@ -26,6 +26,14 @@ import { ListeAffectComponent } from './affect/liste-affect/liste-affect.compone
 import { OperationComponent } from './transaction/operation/operation.component';
 import { MyStaticComponent } from './static/my-static/my-static.component';
 import { ListeoperationComponent } from './transaction/listeoperation/listeoperation.component';
+import { MenuComponent } from './menu/menu.component';
+import { NavparComponent } from './navpar/navpar.component';
+import { DefaultpartComponent } from './defaultpart/defaultpart.component';
+import { JwPaginationComponent } from 'jw-angular-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
+
 
 @NgModule({
   declarations: [
@@ -48,13 +56,27 @@ import { ListeoperationComponent } from './transaction/listeoperation/listeopera
     OperationComponent,
     MyStaticComponent,
     ListeoperationComponent,
+    MenuComponent,
+    NavparComponent,
+    DefaultpartComponent,
+    JwPaginationComponent
+    
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule
+    
+    
+
+    
+    
+    
+    
 
   ],
   providers: [

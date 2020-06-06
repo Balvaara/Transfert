@@ -21,7 +21,15 @@ export class StaticService {
 
   getAllSomme(){
     return this.HttpClient.get(`${environment.myApi}/api/compte/sommesolde`);
-
-
   }
+
+
+  gettAllParteners(){
+      return this.HttpClient.get(`${environment.myApi}/api/nbparteners`);
+    }
+    TarifAll(){
+      return this.HttpClient.get(`${environment.myApi}/api/tarifs`);
+    }
+   
+    
 }

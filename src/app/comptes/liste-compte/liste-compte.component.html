@@ -3,6 +3,7 @@
 </div>
 <br>
 <br>
+
 <table class="table"  id="dataTables-example">
     <thead class="thead">
       <tr>
@@ -17,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-     <tr *ngFor="let compte of allCompte">
+     <tr *ngFor="let compte of allCompte | paginate:{itemsPerPage:5,currentPage:p}">
         <td>{{compte.id}}</td>
         <td>{{compte.numero}}</td>
         <td>{{compte.solde}}</td>
@@ -27,3 +28,8 @@
       </tr>
     </tbody>
   </table>
+  <div class="card-footer pb-0 pt-3">
+<pagination-controls (pageChange)="p=$event">
+                    
+</pagination-controls>
+  </div>

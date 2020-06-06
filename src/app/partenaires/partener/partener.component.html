@@ -1,4 +1,7 @@
-
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Search....." [(ngModel)]="term" formControlName="nomcomplet">
+</div>
+<div class="table-responsive">
 <table class="table">
   <thead>
     <tr>
@@ -9,13 +12,15 @@
       <th>Registre</th>
       <th>Adresse</th>
       <th>Telephone</th>
+      <th>Sologant</th>
       <th>Status</th>
+
 
     </tr>
   </thead>
   <tbody>
     
-    <tr *ngFor="let part of allpart">
+    <tr *ngFor="let part of allpart  | filter:term | paginate:{itemsPerPage:5,currentPage:p}">
       <td scope="row">{{part.id}}</td>
       <td>{{part.users[0].nomComplet}}</td>
       <td>{{part.users[0].username}}</td>
@@ -23,6 +28,8 @@
       <td>{{part.register}}</td>
       <td>{{part.adresse}}</td>
       <td>{{part.tel}}</td>
+      <td>{{part.description}}</td>
+
       <td>
         <div *ngIf="part.users[0].isActive; else elseBlock">
           <button  class="btn btn-success" (click)="Etat(part.id)" >Actif</button>
@@ -35,6 +42,12 @@
     </tr>
   </tbody>
 </table>
+  <div class="card-footer pb-0 pt-3">
+    <pagination-controls (pageChange)="p=$event">
+                        
+    </pagination-controls>
+    </div>  
+    </div>
 <a class="scroll-to-top rounded" href="#page-top">
   <i class="fas fa-angle-up"></i>
 </a>

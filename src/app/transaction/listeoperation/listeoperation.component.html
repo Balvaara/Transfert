@@ -1,1 +1,40 @@
-<h1>hyyyyyyytthhhg</h1>
+
+<table class="table">
+    <thead class="thead">
+      <tr>
+        <th>Id</th>
+        <th>Code</th>
+        <th>Effectue Par</th>
+        <th>Envoyeur</th>
+        <th>Tel Env</th>
+        <th>Beneficaire</th>
+        <th>Tel Ben</th>
+        <th>Date De La Transaction</th>
+        <th>Montant</th>
+        <th>Tarifs</th>
+        <th>Montant TTC</th>
+        <th>Votre Part</th>
+    </thead>
+    <tbody>
+      
+      <tr *ngFor="let Transaction of allTransaction">
+        <td scope="row">{{Transaction.id}}</td>
+        <td class="mycode">{{Transaction.code}}</td>
+        <td>{{Transaction.depotUse.nomComplet}}</td>
+        <td>{{Transaction.nomdep}}</td>
+        <td>{{Transaction.teldep}}</td>
+        <td>{{Transaction.nomRecepteur}}</td>
+        <td>{{Transaction.telrep}}</td>
+        <td>{{Transaction.datetransaction | date:'yyyy-MM-dd H:mm:ss'}}</td>
+        <td>{{Transaction.montant}}</td>
+        <td>{{Transaction.tarifs}}</td>
+        <td>{{Transaction.montant +Transaction.tarifs}}</td>
+        <td>{{Transaction.partDep}}</td>
+
+        
+
+
+      </tr>
+    </tbody>
+  </table>
+    

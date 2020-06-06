@@ -1,3 +1,4 @@
+
 import { User } from './../../modules/user';
 import { ConnexionService } from './../../serices/connexion.service';
 import { Component, OnInit } from '@angular/core';
@@ -29,12 +30,20 @@ export class ForrConnexionComponent implements OnInit {
     };
 
     this.auth.getConnexion(user).subscribe(
-      () => {
-        console.log('Sign in successful!');
-        this.router.navigate(['default']);
+      data=> {
+        //  console.log(data['data']['libelle']);
+        if (data['data']['libelle']=='ADMIN' || data['data']['libelle']=='SUP_ADMIN' || data['data']['libelle']=='CAISSIER') {
+                  this.router.navigate(['default/static']);
+
+        }
+        else if(data['data']['libelle']=='PARTENAIRE_ADMIN' || data['data']['libelle']=='PARTENAIRE' || data['data']['libelle']=='PARTENAIRE_CAISSIER') {
+          this.router.navigate(['defaultpart']);
+
+
+        }
       },
-      error=>{
-        alert(error["message"])
+      error => {
+        alert(JSON.stringify(error));
       }
       )
   }
