@@ -1,4 +1,13 @@
-
+<div class="input-group">
+  <input type="text" class="form-control-sm bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" [(ngModel)]="term">
+  <div class="input-group-append">
+    <button class="btn btn-primary" type="button">
+      <i class="fas fa-search fa-sm"></i>
+    </button>
+  </div>
+</div>
+<div  style="overflow-x:auto;">
+  <div class="card text-center m-3">
 <table class="table">
     <thead class="thead">
       <tr>
@@ -17,7 +26,7 @@
     </thead>
     <tbody>
       
-      <tr *ngFor="let Transaction of allTransaction">
+      <tr *ngFor="let Transaction of allTransaction | paginate:{itemsPerPage:5,currentPage:p} | filter:term">
         <td scope="row">{{Transaction.id}}</td>
         <td class="mycode">{{Transaction.code}}</td>
         <td>{{Transaction.depotUse.nomComplet}}</td>
@@ -37,4 +46,11 @@
       </tr>
     </tbody>
   </table>
+  <div class="card-footer pb-0 pt-3">
+    <pagination-controls (pageChange)="p=$event">
+                        
+    </pagination-controls>
+    </div >
+    </div>
+    </div>
     

@@ -31,4 +31,13 @@ export class UserService {
   suppression(id:number){
     return this.HttpClient.delete(`${environment.myApi}/api/delete/${id}`);
   }
+
+  edite(id:number){
+    return this.HttpClient.get<any>(`${environment.myApi}/api/users?id=${id}`);
+  }
+
+  modifier(id:number,data){
+    return this.HttpClient.put<User>(`${environment.myApi}/api/edite/${id}`,JSON.stringify(data));
+
+  }
 }                                                                                                                                                                               

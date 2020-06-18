@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 export class AjoutUserComponent implements OnInit {
   ajouter:FormGroup;
   roles:any;
-  
+  isAuth=false
   
   constructor(
     private HttpClient:HttpClient,
@@ -25,6 +25,11 @@ export class AjoutUserComponent implements OnInit {
     private insertion:UserService,
     private router: Router
     ) {
+      setTimeout(
+        () => {
+          this.isAuth = true;
+        }, 4000
+      );
     
    }
    
@@ -33,7 +38,7 @@ export class AjoutUserComponent implements OnInit {
     this.ajouter = new FormGroup({
       username: new FormControl(''),
       password: new FormControl(''),
-      nomcompt: new FormControl(''),
+      nomComplet: new FormControl(''),
       profil: new FormControl(''),
     }),
     this.allroles.getRoles().subscribe(
@@ -49,7 +54,7 @@ export class AjoutUserComponent implements OnInit {
       const user={
           username:this.ajouter.value.username,
           password:this.ajouter.value.password,
-          nomComplet:this.ajouter.value.password,
+          nomComplet:this.ajouter.value.nomComplet,
           isActive:true,
           profil:`api/roles/${this.ajouter.value.profil}`,
       }

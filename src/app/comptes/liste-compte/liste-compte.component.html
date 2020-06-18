@@ -1,3 +1,11 @@
+<div class="input-group">
+  <input type="text" class="form-control-sm bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" [(ngModel)]="term">
+  <div class="input-group-append">
+    <button class="btn btn-primary" type="button">
+      <i class="fas fa-search fa-sm"></i>
+    </button>
+  </div>
+</div>
 <div class="input-group-btn">
   <button type="button" class="btn" routerLink="/default/comptes">Create<i class="fa fa-plus" ></i></button>
 </div>
@@ -18,7 +26,7 @@
       </tr>
     </thead>
     <tbody>
-     <tr *ngFor="let compte of allCompte | paginate:{itemsPerPage:5,currentPage:p}">
+     <tr *ngFor="let compte of allCompte | filter:term  | paginate:{itemsPerPage:5,currentPage:p}">
         <td>{{compte.id}}</td>
         <td>{{compte.numero}}</td>
         <td>{{compte.solde}}</td>

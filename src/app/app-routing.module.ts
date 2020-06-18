@@ -20,10 +20,15 @@ import { OperationComponent } from './transaction/operation/operation.component'
 import { ListeoperationComponent } from './transaction/listeoperation/listeoperation.component';
 import { DefaultpartComponent } from './defaultpart/defaultpart.component';
 import { AuthentificationGuard } from './authentification.guard';
+import { OuSommeNousComponent } from './ou-somme-nous/ou-somme-nous.component';
+import { ConfidentialiteComponent } from './confidentialite/confidentialite.component';
+import { EditeComponent } from './users/edite/edite.component';
 
 
 const routes: Routes = [
   { path: '', component:ForrConnexionComponent},
+  { path: 'Map', component:OuSommeNousComponent},
+
   
   { path: 'default', component:DefaultComponent,canActivate:[AuthentificationGuard],
   children:
@@ -36,6 +41,9 @@ const routes: Routes = [
         { path: 'faire-depot', component:FaireDepotComponent},
         { path: 'liste-depot', component:ListedepotComponent},
         { path: 'static', component:MyStaticComponent},
+        { path: 'edite', component:EditeComponent},
+
+
   ]
 },
 { path: 'defaultpart', component:DefaultpartComponent,canActivate:[AuthentificationGuard],
@@ -48,6 +56,8 @@ const routes: Routes = [
     { path: 'transaction', component:OperationComponent},
     { path: 'lister-operation', component:ListeoperationComponent},
     { path: 'static', component:MyStaticComponent},
+    { path: 'conf', component:ConfidentialiteComponent},
+
 
 
   ]

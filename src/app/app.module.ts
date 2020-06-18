@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthentificationComponent } from './pages/authentification/authentification.component';
 import { ForrConnexionComponent } from './components/forr-connexion/forr-connexion.component';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { JwtInterceptor } from './helpers/jwt-interceptor.service';
 
 import { APP_BASE_HREF, NgIfContext, NgLocaleLocalization, NgClass } from '@angular/common';
@@ -32,7 +32,11 @@ import { DefaultpartComponent } from './defaultpart/defaultpart.component';
 import { JwPaginationComponent } from 'jw-angular-pagination';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { AgmCoreModule } from '@agm/core';
+import { OuSommeNousComponent } from './ou-somme-nous/ou-somme-nous.component';
+import { ConfidentialiteComponent } from './confidentialite/confidentialite.component';
+import { EditeComponent } from './users/edite/edite.component';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 
 @NgModule({
@@ -59,7 +63,11 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     MenuComponent,
     NavparComponent,
     DefaultpartComponent,
-    JwPaginationComponent
+    JwPaginationComponent,
+    OuSommeNousComponent,
+    ConfidentialiteComponent,
+    EditeComponent,
+   
     
 
   ],
@@ -69,7 +77,16 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDL1tVC46vxmQ-ijpX1WenjjSv_qVmy3S0'
+    
+    }),
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger', // set defaults here
+    }),
+    
     
     
 

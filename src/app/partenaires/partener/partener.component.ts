@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./partener.component.scss']
 })
 export class PartenerComponent implements OnInit {
-public allpart:any[]= [];
+public allpart:any;
  term:string;
   constructor(private parternere:PartenerService) { }
 

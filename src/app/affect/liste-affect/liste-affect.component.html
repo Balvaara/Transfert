@@ -1,5 +1,13 @@
+<div class="input-group">
+  <input type="text" class="form-control-sm bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" [(ngModel)]="term">
+  <div class="input-group-append">
+    <button class="btn btn-primary" type="button">
+      <i class="fas fa-search fa-sm"></i>
+    </button>
+  </div>
+</div>
 <div class="input-group-btn">
-    <button type="button" class="btn" routerLink="/affectation">Create<i class="fa fa-plus" ></i></button>
+    <button type="button" class="btn" routerLink="defaultpart/affectation">Create<i class="fa fa-plus" ></i></button>
   </div>
   <br>
   <br>
@@ -16,7 +24,7 @@
         </tr>
       </thead>
       <tbody>
-       <tr *ngFor="let affect of allaffect">
+       <tr *ngFor="let affect of allaffect | paginate:{itemsPerPage:5,currentPage:p} | filter:term">
           <td>{{affect.id}}</td>
           <td>{{affect.comptes.numero}}</td>
           <td>{{affect.comptes.solde}}</td>
@@ -27,3 +35,8 @@
         </tr>
       </tbody>
     </table>
+    <div class="card-footer pb-0 pt-3">
+      <pagination-controls (pageChange)="p=$event">
+                          
+      </pagination-controls>
+      </div >

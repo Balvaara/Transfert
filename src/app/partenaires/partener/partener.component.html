@@ -1,6 +1,12 @@
-<div class="form-group">
-  <input type="text" class="form-control" placeholder="Search....." [(ngModel)]="term" formControlName="nomcomplet">
+<div class="input-group">
+  <input type="text" class="form-control-sm bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" [(ngModel)]="term">
+  <div class="input-group-append">
+    <button class="btn btn-primary" type="button">
+      <i class="fas fa-search fa-sm"></i>
+    </button>
+  </div>
 </div>
+<br>
 <div class="table-responsive">
 <table class="table">
   <thead>
@@ -14,8 +20,6 @@
       <th>Telephone</th>
       <th>Sologant</th>
       <th>Status</th>
-
-
     </tr>
   </thead>
   <tbody>
@@ -32,11 +36,16 @@
 
       <td>
         <div *ngIf="part.users[0].isActive; else elseBlock">
-          <button  class="btn btn-success" (click)="Etat(part.id)" >Actif</button>
-
+          <label class="switch">
+            <input type="checkbox" checked (click)="Etat(part.id)">
+            <span class="slider round"></span>
+          </label>
           </div>
       <ng-template #elseBlock>
-        <button class="btn btn-danger" (click)="Etat(part.id)">Inactif</button>
+        <label class="switch">
+          <input type="checkbox" (click)="Etat(part.id)">
+          <span class="slider round"></span>
+        </label>
       </ng-template>
       </td>
     </tr>

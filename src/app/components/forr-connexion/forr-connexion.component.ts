@@ -43,7 +43,7 @@ export class ForrConnexionComponent implements OnInit {
         }
       },
       error => {
-        alert(JSON.stringify(error));
+        alert(error["message"])
       }
       )
   }

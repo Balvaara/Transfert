@@ -25,6 +25,8 @@ export class CrerCompteComponent implements OnInit {
   tel='';
   description=''
   adresse='';
+  localite='';
+
 
   constructor(
     private compteservice:CompteService,
@@ -41,9 +43,11 @@ export class CrerCompteComponent implements OnInit {
            username: new FormControl(''),
            password: new FormControl(''),
            solde: new FormControl(''),
-           tel: new FormControl(''),
+           tel: new FormControl(),
            adresse: new FormControl(''),
            description: new FormControl(''),
+           localite: new FormControl(''),
+
            
          })
         
@@ -65,9 +69,11 @@ export class CrerCompteComponent implements OnInit {
     const nomComplet = this.CompteForm.value.nomComplet;
     const username =this.CompteForm.value.username;
     const password =this.CompteForm.value.password;
-    const tel =this.CompteForm.value.tel;
+    const tel =parseInt(this.CompteForm.value.tel);
     const adresse =this.CompteForm.value.adresse;
     const description =this.CompteForm.value.description;
+    const localite =this.CompteForm.value.localite;
+
 
  
 
@@ -82,6 +88,8 @@ export class CrerCompteComponent implements OnInit {
       tel:tel,
       adresse:adresse,
       description:description,
+      localite:localite,
+
 
       solde:500000,
     
@@ -105,7 +113,7 @@ export class CrerCompteComponent implements OnInit {
          this.route.navigate(['/default/liste-comptes']);
         },
         error => {
-          console.log(error);
+          console.log(error)
         }
       );
     } else {
@@ -141,6 +149,8 @@ getPatnerByNinea(ninea) {
       this.tel = partner.tel;
       this.adresse = partner.adresse;
       this.description = partner.description;
+      this.localite = partner.localite;
+
 
 
 
@@ -152,6 +162,8 @@ getPatnerByNinea(ninea) {
       this.CompteForm.get('tel').disable();
       this.CompteForm.get('adresse').disable();
       this.CompteForm.get('description').disable();
+      this.CompteForm.get('localite').disable();
+
 
 
       this.cerv = 1;
@@ -165,6 +177,8 @@ getPatnerByNinea(ninea) {
       this.tel='';
       this.adresse='';
       this.description='';
+      this.localite='';
+
 
 
       this.CompteForm.get('username').enable();
@@ -174,6 +188,8 @@ getPatnerByNinea(ninea) {
       this.CompteForm.get('tel').enable();
       this.CompteForm.get('adresse').enable();
       this.CompteForm.get('description').enable();
+      this.CompteForm.get('localite').enable();
+
 
 
 

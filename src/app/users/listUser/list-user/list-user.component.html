@@ -1,3 +1,14 @@
+<div class="input-group">
+  <input type="text" class="form-control-sm bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" [(ngModel)]="term">
+  <div class="input-group-append">
+    <button class="btn btn-primary" type="button">
+      <i class="fas fa-search fa-sm"></i>
+    </button>
+  </div>
+</div>
+<div  style="overflow-x:auto;">
+
+
 <div class="card text-center m-3">
   <div class="card-body">
 <table class="table">
@@ -16,7 +27,7 @@
   </thead>
   <tbody>
     
-    <tr *ngFor="let user of alluser | paginate:{itemsPerPage:5,currentPage:p}">
+    <tr *ngFor="let user of alluser | paginate:{itemsPerPage:5,currentPage:p} | filter:term">
       <td scope="row">{{user.id}}</td>
       <td>{{user.username}}</td>
       <td>{{user.nomComplet}}</td>
@@ -24,18 +35,31 @@
           <td><img [src]="AfficheImage(user)" alt=""> </td>
       <td>
         <div *ngIf="user.isActive; else elseBlock">
-          <button  class="btn btn-success" (click)="Etat(user.id)" >Actif</button>
-
+          <label class="switch">
+            <input type="checkbox" checked  (click)="Etat(user.id)" >
+            <span class="slider round"></span>
+          </label>
           </div>
       <ng-template #elseBlock>
-        <button class="btn btn-danger" (click)="Etat(user.id)">Inactif</button>
+            <label class="switch">
+          <input type="checkbox" (click)="Etat(user.id)" >
+          <span class="slider round"></span>
+        </label>
       </ng-template>
       </td>
-      <td><button class="fa fa-envelope" (click)="Action(user.id)">Mod</button></td>
-      <td><button class="fa fa-plus" (click)="Action(user.id)">Sup</button></td>
+      <td><button type="button" class="btn btn-outline-primary"  (click)="editUser(user.id)" ><span class="input-group-addon"><i class="fa fa-pen fa-fw"></i></span>Mod</button></td>
+      <td><button type="button" class="btn btn-outline-danger"
+        mwlConfirmationPopover
+        [popoverTitle]="popoverTitle"
+        [popoverMessage]="popoverMessage"
+        placement="left"
+        (confirm)="confirmClicked = Action(user.id)"
+        (cancel)="cancelClicked = true"  ><span class="input-group-addon"><i class="fa fa-trash fa-fw"></i></span>Supp</button></td>
+
     </tr>
   </tbody>
 </table>
+</div>
 </div>
 <div class="card-footer pb-0 pt-3">
   <pagination-controls (pageChange)="p=$event">
@@ -43,4 +67,37 @@
   </pagination-controls>
   </div >
 </div>
-  
+<div class="container"  >
+  <form  [formGroup]="ajouter" class="login-container" *ngIf="variable">
+ 
+      <!-- <h1>{{myId}}</h1> -->
+      <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">ID</label>
+        <input type="text" class="form-control" [value]="idmod" formControlName="id" name="idmod" >
+      </div>
+     
+     
+      <div class="form-group col-md-6">
+          <label for="inputEmail4">Username</label>
+          <input type="text" class="form-control" [value]="username" formControlName="username" name="username" >
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="inputPassword4">Password</label>
+          <input type="password" class="form-control"  [value]="password" formControlName="password" name="password">
+      </div>
+   
+      
+          <div class="form-group col-md-6">
+          <label for="inputEmail4">Nom Complet</label>
+          <input type="text" class="form-control" [value]="nomComplet" formControlName="nomComplet" name="nomComplet">
+          </div>
+      </div>
+      <div class="form-group col-md-6">
+        <input class="btn" type="submit" (click)="OnSubmite()" value="Enregisterer">
+    </div>
+ 
+  </form>
+</div>

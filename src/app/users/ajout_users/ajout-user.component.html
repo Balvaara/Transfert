@@ -33,7 +33,7 @@
            </div>
       </div>
       <div class="form-group col-md-6">
-        <input class="btn" type="submit" (click)="OnSubmite()" value="Enregisterer">
+        <input class="btn" type="submit" (click)="OnSubmite()" value="Enregisterer" [disabled]="!isAuth">
     </div>
   </form>
 </div>
