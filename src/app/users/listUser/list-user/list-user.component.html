@@ -1,3 +1,53 @@
+<div class="container"  *ngIf="variable">
+  <div class="login-triangle"></div>
+    <i class="fa fa-money" ></i>
+
+    <h2 class="login-header">Modification Utilisateur </h2>
+  <form  [formGroup]="ajouter" class="login-container" >
+ 
+      <!-- <h1>{{myId}}</h1> -->
+      <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">ID</label>
+        <input type="text" class="form-control" [value]="idmod" formControlName="id" name="idmod" >
+      </div>
+     
+     
+      <div class="form-group col-md-6">
+          <label for="inputEmail4">Username</label>
+          <input type="text" class="form-control" [value]="username" formControlName="username" name="username" >
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="inputPassword4">Password</label>
+          <input type="password" class="form-control"  [value]="password" formControlName="password" name="password">
+      </div>
+   
+      
+          <div class="form-group col-md-6">
+          <label for="inputEmail4">Nom Complet</label>
+          <input type="text" class="form-control" [value]="nomComplet" formControlName="nomComplet" name="nomComplet">
+          </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputState">Nom Complet</label>
+          <select id="inputState" formControlName="profil"  class="form-control">
+            
+            <option *ngFor=" let user of roles " value="{{user.id}}">
+              {{user.libelle}}
+            </option>
+          </select>
+          </div>
+      <div class="form-group col-md-6">
+        <input class="btn" type="submit" (click)="OnSubmite()" value="Enregisterer">
+    </div>
+      </div>
+  
+ 
+  </form>
+</div>
 <div class="input-group">
   <input type="text" class="form-control-sm bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" [(ngModel)]="term">
   <div class="input-group-append">
@@ -6,6 +56,9 @@
     </button>
   </div>
 </div>
+<!-- <div class="input-group-btn">
+  <button type="button" class="btn" routerLink="/default/users">Nouvel Utilisateur<i class="fas fa-fw fa-table" ></i></button>
+</div> -->
 <div  style="overflow-x:auto;">
 
 
@@ -22,6 +75,7 @@
       <th>Status</th>
       <th>Modification</th>
       <th>Suppression</th>
+
 
     </tr>
   </thead>
@@ -55,7 +109,7 @@
         placement="left"
         (confirm)="confirmClicked = Action(user.id)"
         (cancel)="cancelClicked = true"  ><span class="input-group-addon"><i class="fa fa-trash fa-fw"></i></span>Supp</button></td>
-
+       
     </tr>
   </tbody>
 </table>
@@ -67,37 +121,4 @@
   </pagination-controls>
   </div >
 </div>
-<div class="container"  >
-  <form  [formGroup]="ajouter" class="login-container" *ngIf="variable">
- 
-      <!-- <h1>{{myId}}</h1> -->
-      <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputEmail4">ID</label>
-        <input type="text" class="form-control" [value]="idmod" formControlName="id" name="idmod" >
-      </div>
-     
-     
-      <div class="form-group col-md-6">
-          <label for="inputEmail4">Username</label>
-          <input type="text" class="form-control" [value]="username" formControlName="username" name="username" >
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-          <label for="inputPassword4">Password</label>
-          <input type="password" class="form-control"  [value]="password" formControlName="password" name="password">
-      </div>
-   
-      
-          <div class="form-group col-md-6">
-          <label for="inputEmail4">Nom Complet</label>
-          <input type="text" class="form-control" [value]="nomComplet" formControlName="nomComplet" name="nomComplet">
-          </div>
-      </div>
-      <div class="form-group col-md-6">
-        <input class="btn" type="submit" (click)="OnSubmite()" value="Enregisterer">
-    </div>
- 
-  </form>
-</div>
+

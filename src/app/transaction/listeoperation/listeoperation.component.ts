@@ -13,7 +13,7 @@ export class ListeoperationComponent implements OnInit {
   ngOnInit() {
     this.operation.getAll().subscribe(
       data=>{
-        this.allTransaction=data["hydra:member"]
+        this.allTransaction=data
         console.log(data)
       }
     )

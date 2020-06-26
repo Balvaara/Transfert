@@ -68,7 +68,7 @@ html {
   font-size: 34px;
   font-weight: 700;
   letter-spacing: 2px;
-  color: #03A9F4;
+  color: #28d;
   position: relative;
 
   &:before {
@@ -78,7 +78,7 @@ html {
     position: absolute;
     top: 0;
     left: -50px;
-    background: #03A9F4;
+    background: #28d;
   }
 }
 
@@ -210,7 +210,7 @@ html {
   }
 
   .spin {
-    background: #03A9F4;
+    background: #28d;
     z-index: 4;
     width:
 0;
@@ -272,7 +272,7 @@ html {
 
   button {
     background-color: #fff;
-    color: #03A9F4;
+    color: #28d;
     border: none;
   }
 
@@ -309,8 +309,8 @@ html {
     }
 
     &:hover {
-      color: #03A9F4;
-      border-color: #03A9F4;
+      color: #28d;
+      border-color: #28d;
     }
   }
 
@@ -337,7 +337,7 @@ html {
   position: absolute;
   top: 0;
   left: 0;
-  background: #03A9F4;
+  background: #28d;
   border-radius: 50%;
 }
 
@@ -373,7 +373,7 @@ html {
   position: relative;
   }
   h1{
-    color: blue;
+    color: #28d;
   }
   .input {
     margin-top: 20px;
@@ -396,7 +396,7 @@ html {
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  background: #03A9F4;
+  background: #28d;
   position: absolute;
   top: 40px;
   right: -70px;
@@ -449,7 +449,7 @@ html {
   max-width: 460px;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 20%;
   float: left;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
@@ -518,7 +518,7 @@ p {
 
 .perspective-line:nth-child(2) {
   left: 5px;
-  background: blue;
+  background: #28d;
 }
 
 .perspective-line:nth-child(3) {
@@ -528,7 +528,7 @@ p {
 
 .perspective-line:nth-child(4) {
   left: 73px;
-  background: blue;
+  background: #28d;
 }
 
 .perspective-line:nth-child(5) {
@@ -536,6 +536,15 @@ p {
   background: #84cdfa;
 }
 .dr{
-  color: blue;
+  color: #28d;
   text-shadow: 2px 2px;
+}
+
+img{
+  margin-top: -5%;
+  width: 150px;
+  height: 100px;
+  border-radius: 25px;
+  -moz-border-raduis:25px;
+  -webkit-border-raduis:25px;
 }

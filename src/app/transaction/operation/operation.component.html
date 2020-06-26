@@ -1,7 +1,17 @@
-<div>
-    <button type="button" class="btn" routerLink="/defaultpart/lister-operation">Liste<i class="fas fa-fw fa-table" ></i></button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
 
-</div>
+
+<div class="input-group-btn">
+    <button type="button" class="btn btn-outline-primary" id="bttn"  routerLink="/defaultpart/lister-operation">Liste Transaction<i class="fas fa-fw fa-table" ></i></button>
+  </div>
     <br>  
 <div class="container">
     
@@ -22,8 +32,20 @@
                     <input type="radio" name="radiobtn" formControlName="retrait"  id="retrait"> <span>Retrait</span>
                   </label>
               
-        </div>
-    </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="inputState">Compte</label>
+                <select id="inputState" formControlName="numero" class="form-control" name="numero">
+                  <option value="">Choisir un compte pour la transaction</option>
+                <option *ngFor=" let numero of numeros " value="{{numero.id}}">
+                    {{numero.numero}}
+                </option>
+              
+                </select>
+            </div>
+     </div>
+
 
       
     <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading> -->
@@ -60,29 +82,36 @@
     
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Montant</label>
-                <input type="number" class="form-control" [value]="montant" formControlName="montant" name="montant" placeholder="Montant">
+                <input type="number" class="form-control" [value]="montant"  formControlName="montant" name="montant" placeholder="Montant">
             </div>
         </div>
         <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputCity">Tarifs</label>
-            <input type="number" formControlName="frais"  [value]="frais" class="form-control" id="inputCity"  name="frais"  readonly  style="color: white; background-color: #28d;">
+            <input type="text" formControlName="tarifs"  [value]="tarifs" class="form-control" id="inputCity"  name="tarifs"  placeholder="Frais" >
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputCity">Montant Total</label>
+            <input type="text" formControlName="montantt"  placeholder="Montant Total" [value]="montantt" class="form-control" id="inputCity"  name="montantt"  >
         </div>
      
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Piece Du Recepteur</label>
                 <input type="text" class="form-control" [value]="piece" formControlName="piece" name="piece"  placeholder="CNI ou PASSPORT">
             </div>
+            <div class="form-group col-md-6">
+                <input class="btn" type="submit" (click)="OnSub()" value="Enregisterer">
+            </div>
         </div>
-        <div class="form-row">
-        <div class="form-group col-md-6">
+        <!-- <div class="form-row"> -->
+        <!-- <div class="form-group col-md-6">
             <label for="inputCity">Montant Total</label>
             <input type="text" formControlName="montantt" [value]="montantt" class="form-control" id="inputCity"  name="montantt"  placeholder="Montant Total">
-        </div>
+        </div> -->
         
-             <div class="form-group col-md-6">
-            <input class="btn" type="submit" (click)="OnSub()" value="Enregisterer">
-        </div>
-        </div>
+             
+        <!-- </div> -->
     </form>
 </div>
+</body>
+</html>

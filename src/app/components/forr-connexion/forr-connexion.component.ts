@@ -36,8 +36,8 @@ export class ForrConnexionComponent implements OnInit {
                   this.router.navigate(['default/static']);
 
         }
-        else if(data['data']['libelle']=='PARTENAIRE_ADMIN' || data['data']['libelle']=='PARTENAIRE' || data['data']['libelle']=='PARTENAIRE_CAISSIER') {
-          this.router.navigate(['defaultpart']);
+        else if(data['data']['libelle']=='ADMIN_PARTENAIRE' || data['data']['libelle']=='PARTENAIRE' || data['data']['libelle']=='CAISSIER_PARTENAIRE') {
+          this.router.navigate(['defaultpart/static-part']);
 
 
         }

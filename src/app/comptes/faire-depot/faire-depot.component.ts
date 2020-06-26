@@ -57,8 +57,8 @@ export class FaireDepotComponent implements OnInit {
       data => {
       //  console.log(data);
       alert(JSON.stringify(data["message"]))
-        this.route.navigate(['/default/liste-depots']);
-      //  this.ndm.navigateByUrl('/listComptes');
+        this.route.navigate(['/default/liste-depot']);
+    //  this.ndm.navigateByUrl('/listComptes');
       },
       error => {
         console.log(error);

@@ -7,16 +7,26 @@ width: 100%;
 }
 th{
     color: blanchedalmond;
+    text-align-last: left;
     
 }
+td{
+  text-align-last: left;
+}
+
 img{
     margin-top: -5%;
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 40px;
     border-radius: 25px;
     -moz-border-raduis:25px;
     -webkit-border-raduis:25px;
 }
+#bttn{
+  margin-top: -5%;
+  float: right;
+  // color:white;
+  }
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 

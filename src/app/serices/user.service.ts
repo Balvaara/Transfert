@@ -17,7 +17,7 @@ export class UserService {
   }
 
   getAllUsers(){
-    return this.HttpClient.get(`${environment.myApi}/api/listerUsers`);
+    return this.HttpClient.get<any>(`${environment.myApi}/api/listerUsers`);
   }
 
   getEtat(id:number){
@@ -31,13 +31,13 @@ export class UserService {
   suppression(id:number){
     return this.HttpClient.delete(`${environment.myApi}/api/delete/${id}`);
   }
-
+  
   edite(id:number){
-    return this.HttpClient.get<any>(`${environment.myApi}/api/users?id=${id}`);
+    return this.HttpClient.get<any>(`${environment.myApi}/api/users/id/${id}`);
   }
 
   modifier(id:number,data){
-    return this.HttpClient.put<User>(`${environment.myApi}/api/edite/${id}`,JSON.stringify(data));
+    return this.HttpClient.put<any>(`${environment.myApi}/api/edite/${id}`,JSON.stringify(data));
 
   }
 }                                                                                                                                                                               

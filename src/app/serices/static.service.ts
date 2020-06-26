@@ -31,5 +31,8 @@ export class StaticService {
       return this.HttpClient.get(`${environment.myApi}/api/tarifs`);
     }
    
+    AllParts(){
+      return this.HttpClient.get(`${environment.myApi}/api/parts`);
+    }
     
 }

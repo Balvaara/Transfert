@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { OperationService } from 'src/app/serices/operation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-operation',
@@ -11,19 +12,22 @@ export class OperationComponent implements OnInit {
   TransactionForm:FormGroup;
   montantt=''
   nomdep=''
+  iri:string
   teldep=''
   nomRecepteur=''
   telrep=''
   montant=''
   piece=''
-  frais
+  tarifs=''
   select
   depot
   retrait
   code
-  cerv
+  cerv;
+  numero;
+  numeros
   public loading = false;
-  constructor( private operation:OperationService) { }
+  constructor( private operation:OperationService,private router:Router) { }
 
   ngOnInit() {
     this.cerv=0
@@ -34,18 +38,27 @@ export class OperationComponent implements OnInit {
       nomRecepteur: new FormControl(''),
       telrep: new FormControl(''),
       montant: new FormControl(''),
-      frais: new FormControl(''),
+      tarifs: new FormControl(''),
       piece: new FormControl(''),
       montantt: new FormControl(''),
       depot: new FormControl(''),
       retrait: new FormControl(''),
       code: new FormControl(''),
+      numero: new FormControl(''),
+
 
 
      })
      this.onChanges();
      this.onChangess();
      this. FindCode();
+     this.FindFrais();
+
+     this.operation.Mycompte().subscribe(
+       data=>{
+         this.numeros=data
+       }
+     )
 
     }
     onChanges(): void {
@@ -53,6 +66,13 @@ export class OperationComponent implements OnInit {
         // console.log(val);
        
         this.faireDepot(val);
+      });
+    }
+    FindFrais(): void {
+      this.TransactionForm.get('montant').valueChanges.subscribe(val => {
+        // console.log(val);
+       
+        this.TraisMontant(val);
       });
     }
 
@@ -94,7 +114,9 @@ export class OperationComponent implements OnInit {
     teldep: teldep,
     nomRecepteur: nomRecepteur,
     montant:montant,
-    telrep:telrep
+    telrep:telrep,
+    comptesDep:`api/comptes/${this.TransactionForm.value.numero}`,
+
 
     
    
@@ -103,7 +125,9 @@ export class OperationComponent implements OnInit {
 }
 const Retrait = {
     code:code,
-    piece:piece
+    piece:piece,
+    compteRetraits:`api/comptes/${this.TransactionForm.value.numero}`,
+
   
   
 };
@@ -117,7 +141,7 @@ if (code == null) {
     data => {
       alert(JSON.stringify(data["message"]))
       // console.log(data);
-    //  this.route.navigate(['/default/liste-comptes']);
+    this.router.navigate(["/defaultpart/lister-operation"]);
     },
     error => {
       console.log(error);
@@ -126,6 +150,8 @@ if (code == null) {
     this.operation.Retrait(Retrait).subscribe(
       data=>{
         alert(JSON.stringify(data["message"]))
+    this.router.navigate(["/defaultpart/lister-operation"]);
+
       },
       error => {
         console.log(error);
@@ -141,6 +167,10 @@ faireDepot(val) {
   
     this.TransactionForm.get('piece').disable();
     this.TransactionForm.get('code').disable(); 
+    this.TransactionForm.get('tarifs').disable(); 
+    this.TransactionForm.get('montantt').disable(); 
+
+
 
 
     this.TransactionForm.get('nomdep').enable(); 
@@ -163,6 +193,10 @@ faireDepot(val) {
     this.TransactionForm.get('telrep').disable();
     this.TransactionForm.get('montant').disable();
     this.TransactionForm.get('montantt').disable();
+    this.TransactionForm.get('tarifs').disable();
+    this.TransactionForm.get('montantt').disable();
+
+
 
     this.TransactionForm.get('piece').enable(); 
     
@@ -177,7 +211,7 @@ faireDepot(val) {
           
           if (data["hydra:member"][0]) {
             let Transaction = data["hydra:member"][0] ;
-          //  console.log(comptes);
+        // console.log(Transaction);
           // this.iri = comptes['@id'];
         this.code=Transaction['code'];
             // console.log(data["hydra:member"][0]);
@@ -186,7 +220,7 @@ faireDepot(val) {
             this.nomRecepteur = Transaction.nomRecepteur;
             this.telrep = Transaction.telrep;
             this.montant = Transaction.montant;
-            this.frais = Transaction.tarifs;
+            this.tarifs = Transaction.tarifs;
             this.montantt = Transaction.tarifs + Transaction.montant      ;
 
 
@@ -194,6 +228,34 @@ faireDepot(val) {
       }
 
   })
+}
+
+TraisMontant(val){
+  this.operation.MontantFrais(val).subscribe
+  (data => {  
+
+    
+    if (data) {
+   console.log(data);
+
+      let Transaction = data;
+      
+    //  this.iri = Transaction['@id'];
+  // this.code=Transaction['frais'];
+  //     // console.log(data["hydra:member"][0]);
+    this.tarifs = Transaction.frais
+
+    this.montantt=Transaction.frais + this.TransactionForm.value.montant;
+
+      this.TransactionForm.get('tarifs').disable();
+      this.TransactionForm.get('montantt').disable();
+
+
+
+}
+
+})
+
 }
 
 }

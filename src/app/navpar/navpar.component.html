@@ -16,7 +16,8 @@
         </div>
       </div>
     </form>
-    <p>Restez Chez-vous <i class="fas fa-user" style="color: #28d;"></i></p>
+    <p><marquee behavior="" direction=""> Restez Chez-vous <img src="../../assets/img/mask-fi.png" alt=""></marquee> </p>
+
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
 
@@ -45,7 +46,7 @@
       <!-- Nav Item - Alerts -->
       <li class="nav-item dropdown no-arrow mx-1">
         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user" style="color: #28d;"></i>
+         <img [src]="AfficheImage(infos)" alt="">
           <!-- Counter - Alerts -->
           <!-- <span class="badge badge-danger badge-counter">3+</span> -->
         </a>
@@ -62,7 +63,8 @@
               </div>
             </div>
             <div>
-              <div class="small text-gray-500">My Profil</div>
+              <div class="small text-gray-500">{{infos.nomComplet}}</div>
+
               Voir Mon Profil
             </div>
           </a>
@@ -70,7 +72,7 @@
         </div>
       </li>
 
-    
+   
 
 
       

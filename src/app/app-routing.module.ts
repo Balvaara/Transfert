@@ -23,6 +23,7 @@ import { AuthentificationGuard } from './authentification.guard';
 import { OuSommeNousComponent } from './ou-somme-nous/ou-somme-nous.component';
 import { ConfidentialiteComponent } from './confidentialite/confidentialite.component';
 import { EditeComponent } from './users/edite/edite.component';
+import { StaticComponent } from './static/static/static.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,8 @@ const routes: Routes = [
         { path: 'liste-depot', component:ListedepotComponent},
         { path: 'static', component:MyStaticComponent},
         { path: 'edite', component:EditeComponent},
+    { path: 'conf', component:ConfidentialiteComponent},
+
 
 
   ]
@@ -55,7 +58,7 @@ const routes: Routes = [
     { path: 'liste-affectation', component:ListeAffectComponent},
     { path: 'transaction', component:OperationComponent},
     { path: 'lister-operation', component:ListeoperationComponent},
-    { path: 'static', component:MyStaticComponent},
+    { path: 'static-part', component:StaticComponent},
     { path: 'conf', component:ConfidentialiteComponent},
 
 

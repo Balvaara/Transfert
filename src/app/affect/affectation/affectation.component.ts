@@ -64,7 +64,7 @@ solde;
   // console.log(user);
   this.Affectation.Affectation(affect).subscribe(data=>{
     alert(JSON.stringify (data["message"]));
-  this.router.navigate(['liste-affectation']);
+  this.router.navigate(['/defaultpart/liste-affectation']);
   }
   )
   }

@@ -1,3 +1,6 @@
+body{
+  background-image: url('../../../assets/img/transfert.png');
+}
 .container{
     margin-top:7%;
   }
@@ -11,7 +14,7 @@
       color: #fff;
     }
     .container input[type="submit"] {
-      margin-top: 6%;
+      margin-top: 8%;
      float: left;
       background: #28d;
   
@@ -20,16 +23,18 @@
       cursor: pointer;
       
     }
-  
+    td{
+      text-align-last: left;
+    }
     
     .container input[type="submit"]:hover {
       background: rgb(17, 204, 48);
     }
-    .btn{
-      background-color: #28d;
+    #bttn{
+      height: 100%;
       margin-top: 2%;
       float: right;
-      color:white;
+      // color:white;
       }
 
       label {
@@ -37,6 +42,7 @@
         cursor: pointer;
         line-height: 2;
         font-size: 1em;
+        color: #000000;
       }
       [type="radio"] {
         clip: rect(0 0 0 0); 

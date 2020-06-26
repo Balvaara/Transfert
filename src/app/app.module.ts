@@ -37,6 +37,8 @@ import { OuSommeNousComponent } from './ou-somme-nous/ou-somme-nous.component';
 import { ConfidentialiteComponent } from './confidentialite/confidentialite.component';
 import { EditeComponent } from './users/edite/edite.component';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { StaticComponent } from './static/static/static.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -67,6 +69,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     OuSommeNousComponent,
     ConfidentialiteComponent,
     EditeComponent,
+    StaticComponent,
    
     
 
@@ -86,6 +89,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger', // set defaults here
     }),
+    RouterModule
     
     
     

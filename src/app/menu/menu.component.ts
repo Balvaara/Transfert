@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PartenerService } from '../serices/partener.service';
 
 @Component({
   selector: 'app-menu',
@@ -6,15 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-my;
-  constructor() { }
+my:any
+  constructor(private service:PartenerService) { }
 
   ngOnInit() {
-  //  this.my= localStorage.getItem('currentUser')
-  // console.log(this.my['data'])
-  // data=>{
-    
-  // }
+    this.service.getInfos().subscribe(
+    data=>{
+      this.my= data
+      // console.log(data)
+    }
+   )
+ 
+  
   }
 
 }

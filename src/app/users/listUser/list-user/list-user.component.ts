@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, Route } from '@angular/router';
 import { User } from 'src/app/modules/user';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ConnexionService } from 'src/app/serices/connexion.service';
 
 
 @Component({
@@ -22,29 +23,36 @@ usechange;
 passwordchange;
 nomchange;
 
-
+roles;
 user:User;
 myId:any
 ajouter:FormGroup
 variable : any = false;
-photovide:any="../assets/img/user3.png"
+photovide:any="../../../../assets/img/user.png"
   constructor(
-    private listuser:UserService,private router:Router
+    private listuser:UserService,private router:Router,
+    private role:ConnexionService
   ) { }
 
   ngOnInit() {
-    
+    this.role.getRoles().subscribe(
+      data=>{
+        this.roles=data;
+        //  console.log(data);  
+      }
+    ),
     this.listuser.getAllUsers().subscribe(
       data=>{
         this.alluser=data;
-      //  c 
+        //  console.log(data);  
+
       }
     ),
     this.ajouter = new FormGroup({
       username: new FormControl(''),
       password: new FormControl(''),
       nomComplet: new FormControl(''),
-      // isActive: new FormControl(''),
+      profil: new FormControl(''),
       id: new FormControl(''),
 
 
@@ -53,7 +61,7 @@ photovide:any="../assets/img/user3.png"
   }
   
   onChanges(): void {
-    this.ajouter.get('user.id').valueChanges.subscribe(val => {
+    this.ajouter.get('id').valueChanges.subscribe(val => {
       // console.log(val);
      
       this.editUser(val);
@@ -85,18 +93,13 @@ photovide:any="../assets/img/user3.png"
     this.listuser.suppression(id).subscribe(
       data=>{
         alert(JSON.stringify(data["message"]))
-        this.listuser.getAllUsers().subscribe(
-          data=>{
-            this.alluser=data;
-          // console.log(data); 
-          }
-        )
+      
        
       },
       
           error=>{
             
-            alert("<div class=''> "+ JSON.stringify (error["message"]))
+            alert( JSON.stringify (error["message"]))
             
           }
     
@@ -119,15 +122,15 @@ photovide:any="../assets/img/user3.png"
   this.variable = !this.variable;
   this.listuser.edite(val).subscribe(
     data=>{
-      console.log(data)
-      if (data["hydra:member"][0]) {
-      const user = data["hydra:member"][0] ;
+      // console.log(data)
+      if (data) {
+      const user = data ;
      this.idmod =user.id;
       this.username =user.username;
       this.password =user.password;
       this.nomComplet =user.nomComplet;
       this.nomComplet =user.nomComplet;
-      // this.isActive =user.isActive
+      //  this.profil =user.profil.libelle
 
 
 
@@ -135,7 +138,7 @@ photovide:any="../assets/img/user3.png"
       this.ajouter.get('username').enable();
       this.ajouter.get('password').enable();
       this.ajouter.get('nomComplet').enable();
-      // this.ajouter.get('isActive').disable();
+    //  this.ajouter.get('profil').disable();
 
 
 
@@ -176,6 +179,7 @@ photovide:any="../assets/img/user3.png"
     username:this.usechange,
     password:this.passwordchange,
     nomComplet:this.nomchange,
+    profil:`api/roles/${this.ajouter.value.profil}`,
 }
     
     // console.log(user)
@@ -184,8 +188,15 @@ photovide:any="../assets/img/user3.png"
     this.listuser.modifier(this.idmod,user).subscribe(
       data=>{
         alert(JSON.stringify (data["message"]));
+        this.listuser.getAllUsers().subscribe(
+          data=>{
+            this.alluser=data;
+            // console.log(data);  
+          }
+        )
       }
     )
+   
   }
   
 }

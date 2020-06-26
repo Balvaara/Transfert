@@ -1,39 +1,118 @@
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+<body>
     
+    <!-- <div class="input-group-btn">
+        <button type="button" class="btn btn-outline-primary" id="bttn" routerLink="/default/liste-users">Liste Utilisateur<i class="fas fa-fw fa-table" ></i></button>
+      </div> -->
 
-  <div class="login-triangle"></div>
-  <i class="fa fa-money" aria-hidden="true"></i>
-
-  <h2 class="login-header">Creation Utilisateur</h2>
-  <form  [formGroup]="ajouter" class="login-container">
-      <div class="form-row">
-      <div class="form-group col-md-6">
-          <label for="inputEmail4">Username</label>
-          <input type="text" class="form-control" formControlName="username" placeholder="Username" >
-      </div>
-      <div class="form-group col-md-6">
-          <label for="inputPassword4">Password</label>
-          <input type="password" class="form-control"  formControlName="password" placeholder="*******">
-      </div>
-      </div>
-      <div class="form-row">
-          <div class="form-group col-md-6">
-          <label for="inputEmail4">Nom Complet</label>
-          <input type="text" class="form-control" formControlName="nomcomplet" placeholder="Nom Complet">
-          </div>
-          <div class="form-group col-md-6">
-          <label for="inputState">Profil</label>
-          <select id="inputState" formControlName="profil" class="form-control">
-            <option value="">Choix.....</option>
-          <option *ngFor=" let profil of roles " value="{{profil.id}}">
-              {{profil.libelle}}
-          </option>
-        
-          </select>
-           </div>
-      </div>
-      <div class="form-group col-md-6">
-        <input class="btn" type="submit" (click)="OnSubmite()" value="Enregisterer" [disabled]="!isAuth">
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <h2 id="heading">Creation Compte</h2>
+                <p>Appuyez sur next pour continuer</p>
+                <form id="msform" [formGroup] = "ajouter">
+                    <!-- progressbar -->
+                    <ul id="progressbar">
+                        <li class="active" id="account"><strong>Comptes</strong></li>
+                        <li id="personal"><strong>Personel</strong></li>
+                        <li id="payment"><strong>Image</strong></li>
+                        <li id="confirm"><strong>Terminer</strong></li>
+                    </ul>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div> <br> <!-- fieldsets -->
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Information Compte:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 1 - 4</h2>
+                                </div>
+                            </div> 
+                            <label class="fieldlabels">UserName oU Email: *</label>
+                             <input type="text" name="email" placeholder="Email ou UserName" formControlName="username"/> 
+                             <label class="fieldlabels">Passwor: *</label> 
+                             <input type="password" name="uname" placeholder="Password" formControlName="password"/> 
+                             
+                        </div>
+                         <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Information Personel</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 2 - 4</h2>
+                                </div>
+                            </div> 
+                            <label class="fieldlabels">Nom Complet: *</label>
+                             <input type="text" name="fname" placeholder=" Nom Complet" formControlName="nomComplet"/>
+                              <label class="fieldlabels">Role: *</label> 
+                              <select name="account" class="form-control" formControlName="profil">
+                                <option value=""> choix..</option>
+                                   <option *ngFor=" let profil of roles " value="{{profil.id}}">
+                                {{profil.libelle}}</option>
+                               </select> 
+                             
+                        </div>
+                         <input type="button" name="next" class="next action-button" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Image Upload:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 3 - 4</h2>
+                                </div>
+                            </div> 
+                            <label class="fieldlabels">Upload Your Photo:</label>
+                             <input type="file" name="pic" accept="image/*"> 
+                            
+                        </div>
+                         <input type="button" name="next" class="next action-button" (click)="OnSubmite()" value="Enregisterer" [disabled]="!isAuth" />
+                          <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Terminer:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 4 - 4</h2>
+                                </div>
+                            </div> <br><br>
+                            <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br>
+                            <div class="row justify-content-center">
+                                <div class="col-3"> <img src="../../../assets/img/succ.png" class="fit-image"> </div>
+                            </div> <br><br>
+                            <div class="row justify-content-center">
+                                <div class="col-7 text-center">
+                                    <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
-  </form>
 </div>
+
+</body>
+</html>

@@ -61,7 +61,13 @@ export class AjoutUserComponent implements OnInit {
       // console.log(user);
       this.insertion.Isersion(user).subscribe(data=>{
         alert(JSON.stringify (data["message"]));
-        this.router.navigate(['/default/liste-users']);
+      // console.log(this.ajouter.value.profil);
+      if (this.ajouter.value.profil==6 || this.ajouter.value.profil==5) {
+         this.router.navigate(['/defaultpart/liste-users']);
+      }else{
+         this.router.navigate(['/default/liste-users']);
+      }
+        
       },
       error=>{
         alert(JSON.stringify (error["message"]))

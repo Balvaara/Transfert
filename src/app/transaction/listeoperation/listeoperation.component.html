@@ -6,23 +6,28 @@
     </button>
   </div>
 </div>
-<div  style="overflow-x:auto;">
-  <div class="card text-center m-3">
-<table class="table">
+<br>
+<div class="input-group-btn">
+  <button type="button" class="btn btn-outline-primary" id="bttn"  routerLink="/defaultpart/transaction">Nouvel Transaction<i class="fas fa-fw fa-table" ></i></button>
+</div>
+
+<table  >
     <thead class="thead">
       <tr>
-        <th>Id</th>
-        <th>Code</th>
-        <th>Effectue Par</th>
-        <th>Envoyeur</th>
-        <th>Tel Env</th>
-        <th>Beneficaire</th>
-        <th>Tel Ben</th>
-        <th>Date De La Transaction</th>
-        <th>Montant</th>
-        <th>Tarifs</th>
-        <th>Montant TTC</th>
-        <th>Votre Part</th>
+        <th scope="col">Id</th>
+        <th scope="col">Code</th>
+        <th scope="col">Effectue Par</th>
+        <th scope="col">Envoyeur</th>
+        <th scope="col">Tel Env</th>
+        <th scope="col">Beneficaire</th>
+        <th scope="col">Tel Ben</th>
+        <th scope="col">Date</th>
+        <th scope="col">Montant</th>
+        <th scope="col">Tarifs</th>
+        <th scope="col">Mo TTC</th>
+        <th scope="col">Votre Part</th>
+        <th scope="col">Etat</th>
+
     </thead>
     <tbody>
       
@@ -39,7 +44,20 @@
         <td>{{Transaction.tarifs}}</td>
         <td>{{Transaction.montant +Transaction.tarifs}}</td>
         <td>{{Transaction.partDep}}</td>
-
+        <td>
+          <div *ngIf="Transaction.status; else elseBlock">
+            <input   type="checkbox" checked >
+            <label for="chck" class="check-trail" >
+              <span class="check-handler" ></span>
+            </label>
+          </div>
+          <ng-template #elseBlock>
+              <input   type="checkbox"  >
+              <label for="chck" class="check-trail" >
+                <span class="check-handler" ></span>
+              </label>
+          </ng-template>
+        </td>
         
 
 
@@ -51,6 +69,5 @@
                         
     </pagination-controls>
     </div >
-    </div>
-    </div>
+    
     

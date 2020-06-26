@@ -15,7 +15,7 @@ public allpart:any;
     this.parternere.getParteners().subscribe(
       data=>{
         this.allpart=data["hydra:member"];
-        // console.log(data);
+        //  console.log(data);
       }
     )
   }

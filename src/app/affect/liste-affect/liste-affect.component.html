@@ -6,8 +6,9 @@
     </button>
   </div>
 </div>
-<div class="input-group-btn">
-    <button type="button" class="btn" routerLink="defaultpart/affectation">Create<i class="fa fa-plus" ></i></button>
+
+  <div class="input-group-btn">
+    <button type="button" class="btn btn-outline-primary" id="bttn" routerLink="/defaultpart/affectation">Nouvel Affectation<i class="fas fa-fw fa-table" ></i></button>
   </div>
   <br>
   <br>
@@ -29,8 +30,8 @@
           <td>{{affect.comptes.numero}}</td>
           <td>{{affect.comptes.solde}}</td>
           <td>{{affect.users.nomComplet}}</td>
-          <td>{{affect.dateAfect}}</td>
-          <td>{{affect.dateFin}}</td>
+          <td>{{affect.dateAfect | date:'yyyy-MM-dd H:mm:ss'}}</td>
+          <td>{{affect.dateFin | date:'yyyy-MM-dd H:mm:ss'}}</td>
 
         </tr>
       </tbody>

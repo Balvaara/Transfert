@@ -13,13 +13,16 @@ export class PartenerService {
 
   getParteners(){
     return this.HttpClient.get(`${environment.myApi}/api/partenaires`);
-
-
   }
 
   getEtat(id:number){
     return this.HttpClient.get(`${environment.myApi}/api/users/partenaire/${id}`);
   }
 
-  
+  getInfos(){
+    return this.HttpClient.get(`${environment.myApi}/api/userCon`);
+  }
+  all(){
+    return this.HttpClient.get(`${environment.myApi}/api/nombreComptes`);
+  } 
 }
