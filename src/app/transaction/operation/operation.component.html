@@ -3,37 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://fonts.googleapis.com/css?family=Nunito:300|Raleway:200,300" rel="stylesheet" type="text/css"/>
+
     <title>Document</title>
 </head>
-<body>
+<body class="mybody">
+    
+<body class="mybody1">
     
 
-
+    <div class="container"  *ngIf="variable">
+        <div id = " print-section " > 
+            <header>
+              <h1>Recu de Transaction
+                <h2>Yonema/ <p style="color: #28d;">{{infos.partenaire.description}}</p></h2>
+              </h1>
+            </header>
+            <section class="flex">
+              <dl>
+                <dt>Code</dt>
+                <dd>{{code}}</dd>
+                <dt>Date de la transaction</dt>
+                <dd>{{date |date:'yyyy-MM-dd H:mm:ss'}}</dd>
+              </dl>
+            </section>
+            <section class="flex">
+              <dl class="bloc">
+                <dt>Envoyeur:</dt>
+                <dd>
+                  
+                  <dl>
+                    <dt>Nom Complet </dt>
+                    <dd>{{recu[0]}}</dd>
+                    <dt>Téléphone</dt>
+                    <dd>{{recu[1]}}</dd>
+                    <!-- <dt></dt>
+                    <dd>bigboss@bigcompanylonglongemail.com</dd> -->
+                  </dl>
+                </dd>
+              </dl>
+              <dl class="bloc">
+                <dt>Destinataire:</dt>
+                <dd>
+                  
+                  <dl>
+                    <dt>Nom Complet </dt>
+                    <dd>{{recu[2]}}</dd>
+                    <dt>Telephone</dt>
+                    <dd>{{recu[3]}}</dd>
+                    <!-- <dt></dt>
+                    <dd>bigboss@bigcompanylonglongemail.com</dd> -->
+                  </dl>
+                </dd>
+              </dl>
+            </section>
+            <table>
+              <thead>
+                <tr> 
+                 
+                  <th>Type</th>
+                  <th>Montant</th>
+                  <th>Frais</th>
+                
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  
+                  <td>{{recu[7]}}</td>
+                  <td>{{recu[4]}}</td>
+                  <td>{{recu[5]}}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr> 
+                  <td colspan="3">− Montant TTC −</td>
+                  <td>Total:</td>
+                  <td>{{recu[6]}}</td>
+                </tr>
+              </tfoot>
+            </table>
+            <footer>
+              <p> – Informatique − Développement WEB </p>
+              <p>Ngaye Meckhe Angle RN:1 | <a href="mailto:lamine.mbaye0104@gmail.com">lamine.mbaye0104@gmail.com</a></p>
+            </footer>
+            </div>
+            <button printSectionId = " print-section " ngxPrint class="btn btn-outline-primary" ><span class="fas fa-fw fa-print"></span>Imprimer </button > 
+    </div>
+</body>
 <div class="input-group-btn">
     <button type="button" class="btn btn-outline-primary" id="bttn"  routerLink="/defaultpart/lister-operation">Liste Transaction<i class="fas fa-fw fa-table" ></i></button>
   </div>
     <br>  
 <div class="container">
-    
+   
+   
 
-    <div class="login-triangle"></div>
-    
+    <div class="login-triangle" ></div>
 
+            
     <h2 class="login-header"><i class="fas fa-hand-holding-usd"></i>Transaction<i class="fas fa-hand-holding-usd"></i></h2>
+   
     <form  [formGroup]="TransactionForm" class="login-container" >
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="depot">
-                    <input type="radio"  formControlName="depot" name="radiobtn" id="depot"  > <span>Dépot</span>
+                    <input type="radio"  formControlName="depot" name="depot" id="depot"  > <span>Dépot</span>
                   </label>
             </div>
             <div class="form-group col-md-6">
                   <label for="retrait">
-                    <input type="radio" name="radiobtn" formControlName="retrait"  id="retrait"> <span>Retrait</span>
+                    <input type="radio" name="retrait" formControlName="retrait"  id="retrait"> <span>Retrait</span>
                   </label>
               
             </div>
-
+        </div>
+        <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputState">Compte</label>
                 <select id="inputState" formControlName="numero" class="form-control" name="numero">
@@ -44,10 +129,15 @@
               
                 </select>
             </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Solde Du Compte: </label>
+                <input type="text"  [value]="solde" formControlName="solde" name="solde" readonly class="form-control"
+                placeholder="Solde" >
+            </div>
      </div>
 
 
-      
+      <fieldset>
     <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading> -->
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -100,7 +190,7 @@
                 <input type="text" class="form-control" [value]="piece" formControlName="piece" name="piece"  placeholder="CNI ou PASSPORT">
             </div>
             <div class="form-group col-md-6">
-                <input class="btn" type="submit" (click)="OnSub()" value="Enregisterer">
+                <input class="btn" type="submit" (click)="OnSub()" value="Enregisterer" (click)="Recu()">
             </div>
         </div>
         <!-- <div class="form-row"> -->
@@ -109,7 +199,7 @@
             <input type="text" formControlName="montantt" [value]="montantt" class="form-control" id="inputCity"  name="montantt"  placeholder="Montant Total">
         </div> -->
         
-             
+    </fieldset>
         <!-- </div> -->
     </form>
 </div>

@@ -30,7 +30,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="inputState">Compte</label>
-            <select id="inputState" formControlName="numero" class="form-control" name="numero">
+            <select  formControlName="numero" class="form-control" name="numero">
               <option value="">Choisir Un Compte</option>
             <option *ngFor=" let numero of numeros " value="{{numero.id}}">
                 {{numero.numero}}

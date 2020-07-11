@@ -44,7 +44,7 @@ photovide:any="../../../../assets/img/user.png"
     this.listuser.getAllUsers().subscribe(
       data=>{
         this.alluser=data;
-        //  console.log(data);  
+          console.log(data);  
 
       }
     ),

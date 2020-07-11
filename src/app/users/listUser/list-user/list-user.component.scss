@@ -1,12 +1,12 @@
 .thead{
-    background-color: #28d;
+    background-color: transparent;
     
 }
 .tbody{
 width: 100%;
 }
 th{
-    color: blanchedalmond;
+    color:#28d;
     text-align-last: left;
     
 }
@@ -84,7 +84,7 @@ body {
 
 
 .container input[type="submit"]:hover {
-  background: rgb(17, 204, 48);
+  background: #28d;
 }
 
 /* Buttons' focus effect */

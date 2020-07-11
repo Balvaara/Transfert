@@ -20,6 +20,7 @@
       <th>Telephone</th>
       <th>Sologant</th>
       <th>Status</th>
+      <th>Suppression</th>
       <th>Nbs comptes</th>
     </tr>
   </thead>
@@ -34,6 +35,7 @@
       <td>{{part.adresse}}</td>
       <td>{{part.tel}}</td>
       <td>{{part.description}}</td>
+
       <td>
         <div *ngIf="part.users[0].isActive; else elseBlock">
           <label class="switch">
@@ -48,7 +50,16 @@
         </label>
       </ng-template>
       </td>
-      <td>[{{part.comptes.length}}]</td>
+     
+      <td><button type="button" class="btn btn-outline-danger"
+        mwlConfirmationPopover
+        [popoverTitle]="popoverTitle"
+        [popoverMessage]="popoverMessage"
+        placement="left"
+        (confirm)="confirmClicked = Action(part.id)"
+        (cancel)="cancelClicked = true"  ><span class="input-group-addon"><i class="fa fa-trash fa-fw"></i></span>Supp</button>
+      </td>
+      <td class="text">[{{part.comptes.length}}]</td>
     </tr>
   </tbody>
 </table>

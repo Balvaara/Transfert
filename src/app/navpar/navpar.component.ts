@@ -3,6 +3,7 @@ import { ConnexionService } from '../serices/connexion.service';
 import { UserService } from '../serices/user.service';
 import { PartenerService } from '../serices/partener.service';
 import { User } from '../modules/user';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-navpar',
@@ -10,6 +11,7 @@ import { User } from '../modules/user';
   styleUrls: ['./navpar.component.scss']
 })
 export class NavparComponent implements OnInit {
+    ajouter:FormGroup;
   photovide:any="../assets/img/user3.png"
 infos:any
 user:User;
@@ -18,10 +20,15 @@ user:User;
     private partener:PartenerService) { }
 
   ngOnInit() {
-    this.partener.getInfos().subscribe(
+    this.ajouter = new FormGroup({
+        search: new FormControl(''),
+      
+        
+    }),
+    this.partener.getInfosPart().subscribe(
       data=>{
-        this.infos=data['hydrat:member']
-       console.log(data)
+        this.infos=data
+      //  console.log(data)
       }
     )
   }

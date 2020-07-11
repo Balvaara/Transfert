@@ -16,7 +16,7 @@ export class FaireDepotComponent implements OnInit {
   iri: string;
   montant;
   numero;
-  solde;
+  solde='';
 
   constructor( private compteService: CompteService, private route: Router) { }
 

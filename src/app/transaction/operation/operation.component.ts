@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { OperationService } from 'src/app/serices/operation.service';
 import { Router } from '@angular/router';
+import { CompteService } from 'src/app/serices/compte.service';
+import { PartenerService } from 'src/app/serices/partener.service';
 
 @Component({
   selector: 'app-operation',
@@ -10,6 +12,9 @@ import { Router } from '@angular/router';
 })
 export class OperationComponent implements OnInit {
   TransactionForm:FormGroup;
+  solde;
+  date;
+  type=''
   montantt=''
   nomdep=''
   iri:string
@@ -26,11 +31,26 @@ export class OperationComponent implements OnInit {
   cerv;
   numero;
   numeros
+  recu:any=[]
+  recumontant:any=[]
+  infos
+
+  variable : any = false;
+  
   public loading = false;
-  constructor( private operation:OperationService,private router:Router) { }
+  constructor( private operation:OperationService,private router:Router,
+    private compteservice:CompteService,
+    private partener:PartenerService) { }
 
   ngOnInit() {
+    this.date= new Date;
     this.cerv=0
+    this.partener.getInfosPart().subscribe(
+      data=>{
+        this.infos=data
+      //  console.log(data)
+      }
+    )
     
     this.TransactionForm = new FormGroup({
       nomdep: new FormControl(''),
@@ -53,6 +73,7 @@ export class OperationComponent implements OnInit {
      this.onChangess();
      this. FindCode();
      this.FindFrais();
+     this.MySolde();
 
      this.operation.Mycompte().subscribe(
        data=>{
@@ -60,6 +81,13 @@ export class OperationComponent implements OnInit {
        }
      )
 
+    }
+    MySolde(): void {
+      this.TransactionForm.get('numero').valueChanges.subscribe(val => {
+        // console.log(val);
+       
+        this.getCompteBySolde(val);
+      });
     }
     onChanges(): void {
       this.TransactionForm.get('depot').valueChanges.subscribe(val => {
@@ -140,8 +168,8 @@ if (code == null) {
   this.operation.Depot(Depot).subscribe(
     data => {
       alert(JSON.stringify(data["message"]))
-      // console.log(data);
-    this.router.navigate(["/defaultpart/lister-operation"]);
+    //  console.log(data);
+    // this.router.navigate(["/defaultpart/lister-operation"]);
     },
     error => {
       console.log(error);
@@ -150,7 +178,7 @@ if (code == null) {
     this.operation.Retrait(Retrait).subscribe(
       data=>{
         alert(JSON.stringify(data["message"]))
-    this.router.navigate(["/defaultpart/lister-operation"]);
+    // this.router.navigate(["/defaultpart/lister-operation"]);
 
       },
       error => {
@@ -256,6 +284,80 @@ TraisMontant(val){
 
 })
 
+}
+getCompteBySolde(val) {
+  this.compteservice.RechNumero1(val).subscribe
+  (data => {
+    if (data["hydra:member"][0]) {
+      let comptes = data["hydra:member"][0] ;
+    //  console.log(comptes);
+    // this.iri = comptes['@id'];
+  this.numero=comptes['id'];
+      // console.log(data["hydra:member"][0]);
+      this.solde = comptes.solde +'CFA';
+
+      // this.DepotForm.get('solde').disable();
+      // this.cerv = 1;
+
+    }else{
+      this.solde='0.00';
+      this.TransactionForm.get('solde').disable()
+    }
+   
+    
+  }
+  ),
+
+error => {
+  console.log(error);
+  console.log();
+};
+
+}
+Recu(){
+  this.variable = !this.variable;
+  // this.operation.RechCode(this.code).subscribe(
+  //   data=>{
+    // this.recu=this.TransactionForm.value
+    // this.recumontant=this.montantt
+    
+    if (this.code==null) {
+
+      this.recu=[
+        this.nomdep=this.TransactionForm.value.nomdep,
+         this.teldep=this.TransactionForm.value.teldep,
+        this.nomRecepteur=this.TransactionForm.value.nomRecepteur,
+        this.telrep=this.TransactionForm.value.telrep,
+        this.montant=this.TransactionForm.value.montant,
+        this.tarifs=this.tarifs,
+        this.montantt=this.montantt,
+        this.type='Depot'
+      ]
+      // console.log(this.recu);
+    }else{
+
+      this.recu=
+      [
+        this.nomdep=this.nomdep,
+        this.teldep=this.teldep,
+        this.nomRecepteur=this.nomRecepteur,
+        this.telrep=this.telrep,
+        this.montant=this.montant,
+        this.tarifs=this.tarifs,
+        this.montantt=this.montantt,
+        this.type='Retrait'
+        
+       
+      ]
+     this.code=this.TransactionForm.value.code
+
+      //  console.log(this.recu);
+    }
+    // this.router.navigate(["/defaultpart/lister-operation"]);
+     
+
+  //   }
+  // )
 }
 
 }

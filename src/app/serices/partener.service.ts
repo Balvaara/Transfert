@@ -22,7 +22,14 @@ export class PartenerService {
   getInfos(){
     return this.HttpClient.get(`${environment.myApi}/api/userCon`);
   }
+  getInfosPart(){
+    return this.HttpClient.get(`${environment.myApi}/api/userConByPartener`);
+  }
   all(){
     return this.HttpClient.get(`${environment.myApi}/api/nombreComptes`);
   } 
+
+  suppression(id:number){
+    return this.HttpClient.delete(`${environment.myApi}/api/supprimer/partenaire/${id}`);
+  }
 }

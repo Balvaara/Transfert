@@ -27,12 +27,12 @@ export class StaticComponent implements OnInit {
       }
     )
     // );
-    // this.staticservice.getAllUsers().subscribe(
-    //   data=>{
-    //     this.alluser=data
-    //     console.log(data);
-    //   }
-    // ),
+    this.staticservice.getAllUsersByPartener().subscribe(
+      data=>{
+        this.alluser=data
+        console.log(data);
+      }
+    ),
     this.st.TarifAll().subscribe(
       data=>{
         this.alltarifs=data["hydra:member"]

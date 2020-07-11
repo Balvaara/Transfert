@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StaticService } from 'src/app/serices/static.service';
+import { UserService } from 'src/app/serices/user.service';
 
 @Component({
   selector: 'app-my-static',
@@ -15,8 +16,10 @@ pageOfItems: Array<any>;
  alltarifs:any
 page:number;
 pageSize:number;
+usersys;
 
-  constructor(private staticservice:StaticService) {
+  constructor(private staticservice:StaticService,
+    private users:UserService) {
    
    }
 
@@ -33,7 +36,15 @@ pageSize:number;
         // console.log(data);
 
       }
+    ),
+    this.users.UsersSys().subscribe(
+      data=>{
+        this.usersys=data
+        // console.log(data);
+
+      }
     )
+
 
     this.staticservice.gettAllParteners().subscribe(
       data=>{

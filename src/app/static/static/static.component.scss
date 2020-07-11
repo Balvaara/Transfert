@@ -1,3 +1,11 @@
 body{
     background-image: url('../../../assets/img/index.png');
 }
+img{
+    margin-top: -5%;
+    width: 75px;
+    height: 75px;
+    border-radius: 25px;
+    -moz-border-raduis:25px;
+    -webkit-border-raduis:25px;
+}

@@ -36,4 +36,28 @@ public allpart:any;
       }
     )
 }
+Action(id:number){
+  this.parternere.suppression(id).subscribe(
+    data=>{
+      alert(JSON.stringify(data["message"]))
+      this.parternere.getParteners().subscribe(
+        data=>{
+          this.allpart=data["hydra:member"];
+          //  console.log(data);
+        }
+      )
+    
+     
+    },
+    
+        error=>{
+          
+          alert( JSON.stringify (error["message"]))
+          
+        }
+  
+  )
+
+
+}
 }

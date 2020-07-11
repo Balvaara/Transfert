@@ -27,7 +27,6 @@ export class CrerCompteComponent implements OnInit {
   adresse='';
   localite='';
 
-
   constructor(
     private compteservice:CompteService,
     private allroles:ConnexionService,

@@ -11,10 +11,10 @@ my:any
   constructor(private service:PartenerService) { }
 
   ngOnInit() {
-    this.service.getInfos().subscribe(
+    this.service.getInfosPart().subscribe(
     data=>{
       this.my= data
-      // console.log(data)
+       console.log(data)
     }
    )
  

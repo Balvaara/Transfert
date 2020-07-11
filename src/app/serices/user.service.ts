@@ -20,6 +20,10 @@ export class UserService {
     return this.HttpClient.get<any>(`${environment.myApi}/api/listerUsers`);
   }
 
+  getAllUsersByPartener(){
+    return this.HttpClient.get<any>(`${environment.myApi}/api/nbuserparener`);
+  }
+
   getEtat(id:number){
     return this.HttpClient.get(`${environment.myApi}/api/users/status/${id}`);
   }
@@ -38,6 +42,11 @@ export class UserService {
 
   modifier(id:number,data){
     return this.HttpClient.put<any>(`${environment.myApi}/api/edite/${id}`,JSON.stringify(data));
+
+  }
+
+  UsersSys(){
+    return this.HttpClient.get<any>(`${environment.myApi}/api/NbuserSys`);
 
   }
 }                                                                                                                                                                               

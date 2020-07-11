@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Document</title>
+</head>
+<body>
+
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->
@@ -8,7 +18,7 @@
     <!-- Topbar Search -->
     <form [formGroup]="ajouter" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
       <div class="input-group">
-        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+        <input type="text" class="form-control bg-light border-0 small"  formControlName="search" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
         <div class="input-group-append">
           <button class="btn btn-primary" type="button">
             <i class="fas fa-search fa-sm"></i>
@@ -22,15 +32,15 @@
     <ul class="navbar-nav ml-auto">
 
       <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-      <li class="nav-item dropdown no-arrow d-sm-none">
+      <!-- <li class="nav-item dropdown no-arrow d-sm-none">
         <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-search fa-fw"></i>
         </a>
-        <!-- Dropdown - Messages -->
+      
         <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
           <form class="form-inline mr-auto w-100 navbar-search" [formGroup]="ajouter">
             <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <input type="text" class="form-control bg-light border-0 small"  formControlName="ninea" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="button">
                   <i class="fas fa-search fa-sm"></i>
@@ -41,10 +51,10 @@
        
         </div>
    
-      </li>
+      </li> -->
 
       <!-- Nav Item - Alerts -->
-      <li class="nav-item dropdown no-arrow mx-1">
+      <li class="nav-item dropdown no-arrow mx-1" >
         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          <img [src]="AfficheImage(infos)" alt="">
           <!-- Counter - Alerts -->
@@ -56,19 +66,28 @@
             Alerts Center
           </h6>
      
-          <a class="dropdown-item d-flex align-items-center" href="#">
+          <a class="dropdown-item d-flex align-items-center" href=""  >
             <div class="mr-3">
               <div class="icon-circle bg-warning">
                 <i class="fas fa-exclamation-triangle text-white"></i>
               </div>
             </div>
             <div>
-              <div class="small text-gray-500">{{infos.nomComplet}}</div>
-
-              Voir Mon Profil
+              <div class="small text-blue-500">{{infos.nomComplet}}</div>
+              
+            
             </div>
           </a>
-          <a class="dropdown-item text-center small text-gray-500" href="" (click)="logout()"><i class="fa fa-unlock"></i>Deconnexion</a>
+           <div class="dropdown-item d-flex align-items-center"> 
+             <div class="small text-blue-500"> 
+                    <button type="button" class="btn btn-info btn-sm"  data-toggle="modal" data-target="#myModal" >
+            Voir Profil
+           </button>
+          </div>
+         </div>
+
+
+          <a class="dropdown-item text-center small text-black-500" href="" (click)="logout()"><i class="fa fa-unlock"></i>Deconnexion</a>
         </div>
       </li>
 
@@ -77,5 +96,33 @@
 
       
     </ul>
-
+    
   </nav>
+ 
+<!-- Trigger the modal with a button -->
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{infos.partenaire.description}}</h4>
+      </div>
+      <div class="modal-body">
+        <p>Nom Complet: {{infos.nomComplet}}</p>
+        <p>Role: {{infos.profil.libelle}}</p>
+        <p>Username: {{infos.username}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+  
+</body>
+</html>

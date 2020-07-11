@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
     this.partener.getInfos().subscribe(
       data=>{
         this.infos=data
-        // console.log(data)
+         console.log(data)
       }
     )
   }

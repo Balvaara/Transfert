@@ -29,6 +29,8 @@ import { StaticComponent } from './static/static/static.component';
 const routes: Routes = [
   { path: '', component:ForrConnexionComponent},
   { path: 'Map', component:OuSommeNousComponent},
+  { path: 'edite', component:EditeComponent},
+
 
   
   { path: 'default', component:DefaultComponent,canActivate:[AuthentificationGuard],

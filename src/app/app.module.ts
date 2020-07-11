@@ -39,6 +39,8 @@ import { EditeComponent } from './users/edite/edite.component';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { StaticComponent } from './static/static/static.component';
 import { RouterModule } from '@angular/router';
+import {NgxPrintModule} from 'ngx-print';
+
 
 
 @NgModule({
@@ -89,7 +91,8 @@ import { RouterModule } from '@angular/router';
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger', // set defaults here
     }),
-    RouterModule
+    RouterModule,
+    NgxPrintModule
     
     
     
