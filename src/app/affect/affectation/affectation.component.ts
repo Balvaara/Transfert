@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AffectationService } from 'src/app/serices/affectation.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CompteService } from 'src/app/serices/compte.service';
 
@@ -15,9 +15,11 @@ numeros;
 users;
 numero;
 solde;
+submitted = false;
   constructor(private Affectation:AffectationService,
     private router:Router,
-    private compteservice :CompteService   ) { }
+    private compteservice :CompteService ,
+    private formBuilder: FormBuilder  ) { }
 
   ngOnInit() {
     this.Affectation.listeComptes().subscribe(
@@ -32,17 +34,17 @@ solde;
         // console.log(data);
       }
     ),
-    this.AffecttionForm = new FormGroup({
-      dateAfect: new FormControl(''),
-      dateFin: new FormControl(''),
-      numero: new FormControl(''),
-      user: new FormControl(''),
+    this.AffecttionForm = this.formBuilder.group({
+      dateAfect: ['',Validators.required],
+      dateFin: ['',Validators.required],
+      numero: ['',Validators.required],
+      user: ['',Validators.required],
       
     })
     this.onChanges();
 
   }
-
+  
   onChanges(): void {
     this.AffecttionForm.get('numero').valueChanges.subscribe(val => {
       // console.log(val);
@@ -61,6 +63,12 @@ solde;
       users:`api/users/${this.AffecttionForm.value.user}`,
 
   }
+  this.submitted = true;
+
+        // stop here if form is invalid
+        if (this.AffecttionForm.invalid) {
+            return;
+        }
   // console.log(user);
   this.Affectation.Affectation(affect).subscribe(data=>{
     alert(JSON.stringify (data["message"]));

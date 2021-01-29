@@ -8,89 +8,7 @@
     <title>Document</title>
 </head>
 <body class="mybody">
-    
-<body class="mybody1">
-    
-
-    <div class="container"  *ngIf="variable">
-        <div id = " print-section " > 
-            <header>
-              <h1>Recu de Transaction
-                <h2>Yonema/ <p style="color: #28d;">{{infos.partenaire.description}}</p></h2>
-              </h1>
-            </header>
-            <section class="flex">
-              <dl>
-                <dt>Code</dt>
-                <dd>{{code}}</dd>
-                <dt>Date de la transaction</dt>
-                <dd>{{date |date:'yyyy-MM-dd H:mm:ss'}}</dd>
-              </dl>
-            </section>
-            <section class="flex">
-              <dl class="bloc">
-                <dt>Envoyeur:</dt>
-                <dd>
-                  
-                  <dl>
-                    <dt>Nom Complet </dt>
-                    <dd>{{recu[0]}}</dd>
-                    <dt>Téléphone</dt>
-                    <dd>{{recu[1]}}</dd>
-                    <!-- <dt></dt>
-                    <dd>bigboss@bigcompanylonglongemail.com</dd> -->
-                  </dl>
-                </dd>
-              </dl>
-              <dl class="bloc">
-                <dt>Destinataire:</dt>
-                <dd>
-                  
-                  <dl>
-                    <dt>Nom Complet </dt>
-                    <dd>{{recu[2]}}</dd>
-                    <dt>Telephone</dt>
-                    <dd>{{recu[3]}}</dd>
-                    <!-- <dt></dt>
-                    <dd>bigboss@bigcompanylonglongemail.com</dd> -->
-                  </dl>
-                </dd>
-              </dl>
-            </section>
-            <table>
-              <thead>
-                <tr> 
-                 
-                  <th>Type</th>
-                  <th>Montant</th>
-                  <th>Frais</th>
-                
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  
-                  <td>{{recu[7]}}</td>
-                  <td>{{recu[4]}}</td>
-                  <td>{{recu[5]}}</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr> 
-                  <td colspan="3">− Montant TTC −</td>
-                  <td>Total:</td>
-                  <td>{{recu[6]}}</td>
-                </tr>
-              </tfoot>
-            </table>
-            <footer>
-              <p> – Informatique − Développement WEB </p>
-              <p>Ngaye Meckhe Angle RN:1 | <a href="mailto:lamine.mbaye0104@gmail.com">lamine.mbaye0104@gmail.com</a></p>
-            </footer>
-            </div>
-            <button printSectionId = " print-section " ngxPrint class="btn btn-outline-primary" ><span class="fas fa-fw fa-print"></span>Imprimer </button > 
-    </div>
-</body>
+ 
 <div class="input-group-btn">
     <button type="button" class="btn btn-outline-primary" id="bttn"  routerLink="/defaultpart/lister-operation">Liste Transaction<i class="fas fa-fw fa-table" ></i></button>
   </div>
@@ -121,13 +39,16 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputState">Compte</label>
-                <select id="inputState" formControlName="numero" class="form-control" name="numero">
+                <select id="inputState" formControlName="numero" class="form-control" name="numero" [ngClass]="{ 'is-invalid': submitted && f.numero.errors }">
                   <option value="">Choisir un compte pour la transaction</option>
                 <option *ngFor=" let numero of numeros " value="{{numero.id}}">
                     {{numero.numero}}
                 </option>
               
                 </select>
+                <div *ngIf="submitted && f.numero.errors" class="invalid-feedback">
+                  <div *ngIf="f.numero.errors.required">Il faut Choisir un compte</div>
+              </div>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputPassword4">Solde Du Compte: </label>
@@ -148,26 +69,45 @@
   
         <div class="form-group col-md-6">
             <label for="inputEmail4" >Nom Du Deposant</label>
-            <input type="text" class="form-control" [value]="nomdep" formControlName="nomdep" name="nomdep" placeholder="Nom Du Deposant">
+            <input type="text" class="form-control" [value]="nomdep" formControlName="nomdep" [ngClass]="{ 'is-invalid': submitted && f.nomdep.errors }" name="nomdep" placeholder="Nom Du Deposant">
+            <div *ngIf="submitted && f.nomdep.errors" class="invalid-feedback">
+              <div *ngIf="f.nomdep.errors.required">Ce champ est obligatoire</div>
+              <div *ngIf="f.nomdep.errors.maxLength">Incomplet</div>
+          </div>
            
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputText4">Telephone Du Deposant</label>
-            <input type="text" class="form-control" [value]="teldep" formControlName="teldep" name="teldep" placeholder="Telephone Du Deposant"  [value]="teldep">
+            <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.teldep.errors }" [value]="teldep" formControlName="teldep" name="teldep" placeholder="Telephone Du Deposant" >
+            <div *ngIf="submitted && f.teldep.errors" class="invalid-feedback">
+              <div *ngIf="f.teldep.errors.required">Ce champ est obligatoire</div>
+              <div *ngIf="f.teldep.errors.maxLength">Incomplet</div>
+          </div>
+     
+           
+      
         </div>
        
        
             <div class="form-group col-md-6">
             <label for="inputEmail4">Nom Du Recepteur</label>
-            <input type="text" class="form-control" [value]="nomRecepteur" formControlName="nomRecepteur" name="nomRecepteur" placeholder="Nom Du Recepteur">
+            <input type="text" class="form-control" [value]="nomRecepteur" [ngClass]="{ 'is-invalid': submitted && f.nomRecepteur.errors }"  formControlName="nomRecepteur" name="nomRecepteur" placeholder="Nom Du Recepteur">
+            <div *ngIf="submitted && f.nomRecepteur.errors" class="invalid-feedback">
+              <div *ngIf="f.nomRecepteur.errors.required">Ce champ est obligatoire</div>
+              <div *ngIf="f.nomRecepteur.errors.maxLength">Incomplet</div>
+          </div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
             <label for="inputPassword4">Telephone Du Recepteur</label>
-            <input type="text" class="form-control" [value]="telrep" formControlName="telrep" name="telrep" placeholder="Telephone Du Recepteur">
+            <input type="text" class="form-control" [value]="telrep" [ngClass]="{ 'is-invalid': submitted && f.telrep.errors }" formControlName="telrep" name="telrep" placeholder="Telephone Du Recepteur">
+            <div *ngIf="submitted && f.telrep.errors" class="invalid-feedback">
+              <div *ngIf="f.telrep.errors.required">Ce champ est obligatoire</div>
+              <div *ngIf="f.telrep.errors.maxLength">Incomplet</div>
+          </div>
             </div>
     
             <div class="form-group col-md-6">
@@ -203,5 +143,88 @@
         <!-- </div> -->
     </form>
 </div>
+</body>
+   
+<body class="mybody1">
+    
+
+  <div class="container"  *ngIf="variable && loading">
+      <div id = " print-section " > 
+          <header>
+            <h1>Recu de Transaction
+              <h2>Yonema/ <p style="color: #28d;">{{infos.partenaire.description}}</p></h2>
+            </h1>
+          </header>
+          <section class="flex">
+            <dl>
+              <dt>Code</dt>
+              <dd>{{code}}</dd>
+              <dt>Date de la transaction</dt>
+              <dd>{{date |date:'yyyy-MM-dd H:mm:ss'}}</dd>
+            </dl>
+          </section>
+          <section class="flex">
+            <dl class="bloc">
+              <dt>Envoyeur:</dt>
+              <dd>
+                
+                <dl>
+                  <dt>Nom Complet </dt>
+                  <dd>{{recu[0]}}</dd>
+                  <dt>Téléphone</dt>
+                  <dd>{{recu[1]}}</dd>
+                  <!-- <dt></dt>
+                  <dd>bigboss@bigcompanylonglongemail.com</dd> -->
+                </dl>
+              </dd>
+            </dl>
+            <dl class="bloc">
+              <dt>Destinataire:</dt>
+              <dd>
+                
+                <dl>
+                  <dt>Nom Complet </dt>
+                  <dd>{{recu[2]}}</dd>
+                  <dt>Telephone</dt>
+                  <dd>{{recu[3]}}</dd>
+                  <!-- <dt></dt>
+                  <dd>bigboss@bigcompanylonglongemail.com</dd> -->
+                </dl>
+              </dd>
+            </dl>
+          </section>
+          <table>
+            <thead>
+              <tr> 
+               
+                <th>Type</th>
+                <th>Montant</th>
+                <th>Frais</th>
+              
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                
+                <td>{{recu[7]}}</td>
+                <td>{{recu[4]}}</td>
+                <td>{{recu[5]}}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr> 
+                <td colspan="3">− Montant TTC −</td>
+                <td>Total:</td>
+                <td>{{recu[6]}}</td>
+              </tr>
+            </tfoot>
+          </table>
+          <footer>
+            <p> – Informatique − Développement WEB </p>
+            <p>Ngaye Meckhe Angle RN:1 | <a href="mailto:lamine.mbaye0104@gmail.com">lamine.mbaye0104@gmail.com</a></p>
+          </footer>
+          </div>
+          <button printSectionId = " print-section " ngxPrint class="btn btn-outline-primary" ><span class="fas fa-fw fa-print"></span>Imprimer </button > 
+  </div>
 </body>
 </html>

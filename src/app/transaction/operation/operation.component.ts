@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { OperationService } from 'src/app/serices/operation.service';
 import { Router } from '@angular/router';
 import { CompteService } from 'src/app/serices/compte.service';
@@ -36,11 +36,12 @@ export class OperationComponent implements OnInit {
   infos
 
   variable : any = false;
-  
-  public loading = false;
+  submitted = false;
+   loading : any = false;
   constructor( private operation:OperationService,private router:Router,
     private compteservice:CompteService,
-    private partener:PartenerService) { }
+    private partener:PartenerService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.date= new Date;
@@ -52,19 +53,19 @@ export class OperationComponent implements OnInit {
       }
     )
     
-    this.TransactionForm = new FormGroup({
-      nomdep: new FormControl(''),
-      teldep: new FormControl(''),
-      nomRecepteur: new FormControl(''),
-      telrep: new FormControl(''),
-      montant: new FormControl(''),
-      tarifs: new FormControl(''),
-      piece: new FormControl(''),
-      montantt: new FormControl(''),
-      depot: new FormControl(''),
-      retrait: new FormControl(''),
-      code: new FormControl(''),
-      numero: new FormControl(''),
+    this.TransactionForm =this.formBuilder.group({
+      nomdep: ['',Validators.required],
+      teldep: ['',[Validators.required, Validators.minLength(9)]],
+      nomRecepteur: ['',Validators.required],
+      telrep: ['',[Validators.required, Validators.minLength(9)]],
+      montant: ['',Validators.required],
+      tarifs: ['',Validators.required],
+      piece: ['',Validators.required],
+      montantt: ['',Validators.required],
+      depot: ['',Validators.required],
+      retrait: ['',Validators.required],
+      code: ['',Validators.required],
+      numero: ['',Validators.required],
 
 
 
@@ -121,14 +122,15 @@ export class OperationComponent implements OnInit {
     }
   get f() { return this.TransactionForm.controls; }
 
+  
   OnSub(){
-      const nomdep = this.TransactionForm.value.nomdep;
-      const teldep = this.TransactionForm.value.teldep;
-      const nomRecepteur = this.TransactionForm.value.nomRecepteur;
-      const montant =this.TransactionForm.value.montant;
-      const piece =this.TransactionForm.value.piece;
-      const telrep =this.TransactionForm.value.telrep;
-      const code =this.TransactionForm.value.code;
+    const nomdep = this.TransactionForm.value.nomdep;
+    const teldep = this.TransactionForm.value.teldep;
+    const nomRecepteur = this.TransactionForm.value.nomRecepteur;
+    const montant =this.TransactionForm.value.montant;
+    const piece =this.TransactionForm.value.piece;
+    const telrep =this.TransactionForm.value.telrep;
+    const code =this.TransactionForm.value.code;
 
 
 
@@ -136,57 +138,63 @@ export class OperationComponent implements OnInit {
 
 
 
- const Depot = {
+const Depot = {
+
+  nomdep: nomdep,
+  teldep: teldep,
+  nomRecepteur: nomRecepteur,
+  montant:montant,
+  telrep:telrep,
+  comptesDep:`api/comptes/${this.TransactionForm.value.numero}`,
+
+
+  
  
-    nomdep: nomdep,
-    teldep: teldep,
-    nomRecepteur: nomRecepteur,
-    montant:montant,
-    telrep:telrep,
-    comptesDep:`api/comptes/${this.TransactionForm.value.numero}`,
-
-
-    
-   
-   
+ 
 
 }
 const Retrait = {
-    code:code,
-    piece:piece,
-    compteRetraits:`api/comptes/${this.TransactionForm.value.numero}`,
+  code:code,
+  piece:piece,
+  compteRetraits:`api/comptes/${this.TransactionForm.value.numero}`,
 
-  
-  
+
+
 };
-
+this.submitted=true
+// if (this.TransactionForm.invalid) {
+//   return;
+// }
 if (code == null) {
 
  
-  this.loading = true;
+this.loading = !this.loading;
 
-  this.operation.Depot(Depot).subscribe(
-    data => {
+
+this.operation.Depot(Depot).subscribe(
+  data => {
+    alert(JSON.stringify(data["message"]))
+  //  console.log(data);
+  // this.router.navigate(["/defaultpart/lister-operation"]);
+  },
+  error => {
+    console.log(error);
+  })
+}else{
+  
+this.loading = !this.loading;
+
+  this.operation.Retrait(Retrait).subscribe(
+    data=>{
       alert(JSON.stringify(data["message"]))
-    //  console.log(data);
-    // this.router.navigate(["/defaultpart/lister-operation"]);
+  // this.router.navigate(["/defaultpart/lister-operation"]);
     },
     error => {
       console.log(error);
-    })
-  }else{
-    this.operation.Retrait(Retrait).subscribe(
-      data=>{
-        alert(JSON.stringify(data["message"]))
-    // this.router.navigate(["/defaultpart/lister-operation"]);
-
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
-   
+    }
+  )
+}
+ 
 
 
 }

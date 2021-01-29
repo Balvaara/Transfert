@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
+    "@speedup/notification-sms-smsir": "^1.0.2",
     "angular-confirmation-popover": "^5.0.0",
     "bootstrap": "^4.4.1",
     "bootstrap-toggle": "^2.2.2",

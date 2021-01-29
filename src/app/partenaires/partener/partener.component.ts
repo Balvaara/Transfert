@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class PartenerComponent implements OnInit {
 public allpart:any;
  term:string;
+ cont:any;
   constructor(private parternere:PartenerService) { }
 
   ngOnInit() {
@@ -35,6 +36,18 @@ public allpart:any;
 
       }
     )
+}
+
+MyContrat(id){
+  this.parternere.MyContrat(id).subscribe(
+    data=>{
+      this.cont=data["hydra:member"]
+      // console.log(this.cont); 
+        }
+      )
+     
+
+  
 }
 Action(id:number){
   this.parternere.suppression(id).subscribe(

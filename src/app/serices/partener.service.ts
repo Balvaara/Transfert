@@ -32,4 +32,10 @@ export class PartenerService {
   suppression(id:number){
     return this.HttpClient.delete(`${environment.myApi}/api/supprimer/partenaire/${id}`);
   }
+
+
+  MyContrat(id){
+  
+    return this.HttpClient.get<any>(`${environment.myApi}/api/contrats?id=${id}`);
+  }
 }

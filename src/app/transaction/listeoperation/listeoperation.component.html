@@ -10,9 +10,20 @@
 <div class="input-group-btn">
   <button type="button" class="btn btn-outline-primary" id="bttn"  routerLink="/defaultpart/transaction">Nouvel Transaction<i class="fas fa-fw fa-table" ></i></button>
 </div>
+<br>
+<div class="form-row">
+  <div class="form-group col-md-2">
+    <button type="button" class="btn btn-outline-primary" id="btt"  (click)="mesRetraits()">Mes Retraits<i class="fas fa-fw fa-table" ></i></button>
 
-<table  class="table-bordered">
+  </div>
+  <div class="form-group col-md-2">
+  <button type="button" class="btn btn-outline-primary" id="btt"  (click)="mesDepots()">Mes Depots<i class="fas fa-fw fa-table" ></i></button>
+  </div>
+</div>
+<div *ngIf="variable">
+<table  class="table-bordered" >
     <thead class="thead">
+      <caption scope="col">Depots</caption>
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Code</th>
@@ -69,5 +80,52 @@
                         
     </pagination-controls>
     </div >
+  </div>
+ <div *ngIf="variable1">   
+<table  class="table-bordered">
+  <thead class="thead">
+    <caption scope="col">Retraits</caption>
+    <tr>
+      
+      <th scope="col">Code</th>
+      <th scope="col">Effectue Par</th>
+      <th scope="col">Envoyeur</th>
+      <th scope="col">Tel Env</th>
+      <th scope="col">Beneficaire</th>
+      <th scope="col">Tel Ben</th>
+      <th scope="col">Date</th>
+      <th scope="col">Montant</th>
+      <th scope="col">Tarifs</th>
+      <th scope="col">Mo TTC</th>
+      <th scope="col">Votre Part</th>
+      
+
+  </thead>
+  <tbody>
     
-    
+    <tr *ngFor="let allRetaits of allRetait | paginate:{itemsPerPage:5,currentPage:p} | filter:term">
+      <td class="mycode">{{allRetaits.code}}</td>
+      <td>{{allRetaits.retaitUse.nomComplet}}</td>
+      <td>{{allRetaits.nomdep}}</td>
+      <td>{{allRetaits.teldep}}</td>
+      <td>{{allRetaits.nomRecepteur}}</td>
+      <td>{{allRetaits.telrep}}</td>
+      <td>{{allRetaits.datetransaction | date:'yyyy-MM-dd H:mm:ss'}}</td>
+      <td>{{allRetaits.montant}}</td>
+      <td>{{allRetaits.tarifs}}</td>
+      <td>{{allRetaits.montant +allRetaits.tarifs}}</td>
+      <td>{{allRetaits.partRet}}</td>
+      
+      
+
+
+    </tr>
+  </tbody>
+</table>
+<div class="card-footer pb-0 pt-3">
+  <pagination-controls (pageChange)="p=$event">
+                      
+  </pagination-controls>
+  </div >
+</div>
+  

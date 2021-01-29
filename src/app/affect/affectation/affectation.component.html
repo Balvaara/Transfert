@@ -21,38 +21,49 @@
         <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputEmail4" >Date Debut</label>
-            <input type="datetime" class="form-control"  formControlName="dateAfect" name="dateAfect" placeholder="yyyy-mm-dd h:m:s">
-           
+            <input type="datetime-local" class="form-control"  formControlName="dateAfect" name="dateAfect" [ngClass]="{ 'is-invalid': submitted && f.dateAfect.errors }" placeholder="yyyy-mm-dd h:m:s">
+            <div *ngIf="submitted && f.dateAfect.errors" class="invalid-feedback">
+                <div *ngIf="f.dateAfect.errors.required">Ce champ est obligatoire</div>
+            </div>
         </div>
         <div class="form-group col-md-6">
-            <label for="inputDate4">Date Fin</label>
-            <input type="datetime" class="form-control" formControlName="dateFin" name="dateFin" placeholder="yyyy-mm-dd h:m:s">
+            <label for="inputEmail4">Date Fin</label>
+            <input type="datetime-local" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dateFin.errors }" formControlName="dateFin" name="dateFin" placeholder="yyyy-mm-dd h:m:s">
+            <div *ngIf="submitted && f.dateFin.errors" class="invalid-feedback">
+                <div *ngIf="f.dateFin.errors.required">Ce champ est obligatoire</div>
+            </div>
         </div>
         <div class="form-group col-md-6">
             <label for="inputState">Compte</label>
-            <select  formControlName="numero" class="form-control" name="numero">
+            <select  formControlName="numero" class="form-control" name="numero"  [ngClass]="{ 'is-invalid': submitted && f.numero.errors }">
               <option value="">Choisir Un Compte</option>
             <option *ngFor=" let numero of numeros " value="{{numero.id}}">
                 {{numero.numero}}
             </option>
           
             </select>
+            <div *ngIf="submitted && f.numero.errors" class="invalid-feedback">
+                <div *ngIf="f.numero.errors.required">Ce champ est obligatoire</div>
+            </div>
              </div>
              <div class="form-group col-md-6">
                 <label for="inputState">Utilisateur</label>
-                <select id="inputState" formControlName="user" class="form-control">
+                <select id="inputState" formControlName="user" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.user.errors }">
                   <option value="">Choisir Un Utilisateur</option>
                 <option *ngFor=" let user of users " value="{{user.id}}">
                     {{user.nomComplet}}
                 </option>
               
                 </select>
+                <div *ngIf="submitted && f.user.errors" class="invalid-feedback">
+                    <div *ngIf="f.user.errors.required">Ce champ est obligatoire</div>
+                </div>
              </div>
         </div>
        
         <div class="form-row">
              <div class="form-group col-md-6">
-            <input class="btn" type="submit" (click)="OnSub()" value="Enregisterer">
+            <input class="btn" type="submit" (click)="OnSub()" value="Enregisterer" >
              </div>
         
         </div>

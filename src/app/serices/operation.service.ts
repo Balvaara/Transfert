@@ -34,6 +34,10 @@ export class OperationService {
   
     return this.HttpClient.get<any>(`${environment.myApi}/api/transactionbyusers`);
   }
+  getAllRetrait(){
+  
+    return this.HttpClient.get<any>(`${environment.myApi}/api/transactionRetbyusers`);
+  }
 
   MontantFrais(montant:any){
     return this.HttpClient.get<any>(`${environment.myApi}/api/tarisByMontant/${montant}`);

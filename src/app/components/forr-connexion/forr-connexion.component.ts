@@ -12,10 +12,11 @@ import { Router } from '@angular/router';
 })
 export class ForrConnexionComponent implements OnInit {
     formconnexion:FormGroup;
-  
+date;  
   constructor(private auth:ConnexionService, private router: Router) { }
 
   ngOnInit() {
+    this.date= new Date;
    this.formconnexion = new FormGroup({
       username: new FormControl(''),
       password: new FormControl(''),
